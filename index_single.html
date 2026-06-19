@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="LariArt Móveis sob Encomenda - Projetos exclusivos de móveis comerciais e decorações para negócios de sucesso.">
+    <meta name="theme-color" content="#0B0B0B">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <title>LariArt | Móveis sob Encomenda e Decorações Comerciais</title>
+    
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config Custom Theme -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E86D6D',
+                        secondary: '#F5F5F5',
+                        brandDark: '#0B0B0B',
+                        brandStone: '#171717',
+                        brandStoneLight: '#262626',
+                        detail: '#CFCFCF'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root {
+            --primary: #E86D6D;
+            --dark: #0B0B0B;
+            --stone: #171717;
+            --detail: #CFCFCF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* micro premium scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d65c5c;
+        }
+
+        /* Glassmorphism Navigation */
+        .glass-nav {
+            background: rgba(11, 11, 11, 0.9);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Quick Toast Notification styling */
+        .toast-active {
+            opacity: 1 !important;
+            transform: translate(-50%, 0) !important;
+            pointer-events: auto !important;
+        }
+    </style>
+</head>
+<body class="selection:bg-primary selection:text-white">
+
+    <!-- 1. CINEMATIC LOADER SCREEN (LOGO HIGHLIGHTED ACCORDING TO INSTRUCTIONS) -->
+    <div id="welcome-loader" class="fixed inset-0 bg-[#0B0B0B] z-[100000] flex flex-col justify-center items-center px-6 transition-all duration-700">
+        <div class="flex flex-col items-center max-w-sm w-full text-center">
+            
+            <!-- Highly Highlighted Premium Logo Frame -->
+            <div class="relative mb-6 animate-pulse">
+                <div class="absolute -inset-2 rounded-full bg-gradient-to-tr from-primary/60 to-red-400/40 blur-xl opacity-80"></div>
+                <div class="relative w-32 h-32 bg-stone-900 border-2 border-primary/40 rounded-full flex items-center justify-center overflow-hidden shadow-2xl p-3">
+                    <img 
+                        src="logo.png" 
+                        alt="LariArt Logo" 
+                        className="w-full h-full object-contain"
+                        id="loader-img-logo"
+                        onerror="this.style.display='none'; document.getElementById('loader-txt-fallback').classList.remove('hidden')"
+                    />
+                    <!-- Elegant visual text back-up if client misses logo.png on root -->
+                    <div id="loader-txt-fallback" class="hidden font-serif text-primary text-6xl font-extrabold select-none">LA</div>
+                </div>
+            </div>
+
+            <h2 class="font-serif text-3xl font-extrabold uppercase tracking-widest text-white mb-2">LariArt</h2>
+            <div class="w-12 h-1 bg-primary rounded mb-2"></div>
+            <p class="text-[10px] text-zinc-400 tracking-widest uppercase mb-10">Móveis sob Encomenda & Decorações</p>
+            
+            <!-- Static Elegant Loading Bar -->
+            <div class="w-48 bg-zinc-800 h-1.5 rounded-full overflow-hidden border border-white/5">
+                <div id="loader-progress-bar" class="bg-primary h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <span id="loader-progress-val" class="text-[9px] text-zinc-500 font-bold uppercase mt-2 tracking-widest">0% carregando</span>
+        </div>
+    </div>
+
+    <!-- 2. REAL-TIME MULTI-FUNCTIONAL TOAST -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-zinc-900 border border-primary/20 p-4 rounded-2xl shadow-2xl z-[120000] opacity-0 pointer-events-none transition-all duration-300 w-[90%] max-w-md flex items-center gap-3">
+        <div id="toast-icon-wrapper" class="w-10 h-10 rounded-full flex items-center justify-center shrink-0">
+            <!-- Icon replaced programmatically -->
+            <i id="toast-icon" data-lucide="info" class="w-5 h-5"></i>
+        </div>
+        <div class="flex-1 text-xs sm:text-sm font-semibold text-white" id="toast-text">
+            Mensagem do sistema
+        </div>
+    </div>
+
+    <!-- 3. MAIN NAVIGATION BAR -->
+    <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-[5000] transition-all duration-300 py-5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
+            
+            <!-- Logo Section with highlighted elements -->
+            <a href="#inicio" class="flex items-center gap-3 group">
+                <div class="relative">
+                    <div class="absolute -inset-1 rounded-xl bg-gradient-to-tr from-primary to-orange-400 blur-sm opacity-40 group-hover:opacity-100 transition duration-300"></div>
+                    <div class="relative w-11 h-11 bg-stone-900/90 border border-primary/30 rounded-xl flex items-center justify-center overflow-hidden">
+                        <img 
+                            src="logo.png" 
+                            alt="Logo LariArt" 
+                            class="w-full h-full object-contain p-1"
+                            onerror="this.style.display='none'; document.getElementById('navbar-fallback-logo').classList.remove('hidden')"
+                        />
+                        <span id="navbar-fallback-logo" class="hidden font-serif font-extrabold text-lg text-primary select-none">LA</span>
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif text-xl font-bold tracking-widest text-white leading-none">LariArt</span>
+                    <span class="text-[9px] text-primary uppercase tracking-widest font-bold mt-1">Móveis sob encomenda</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="#inicio" class="text-xs uppercase tracking-widest text-zinc-300 hover:text-primary transition-colors font-semibold">Início</a>
+                <a href="#promocoes" id="nav-promo-tab" class="text-xs uppercase tracking-widest text-primary font-bold transition-colors hidden gap-1.5 items-center animate-pulse">
+                    <i data-lucide="gift" class="w-3.5 h-3.5"></i> Promoção Especial
+                </a>
+                <a href="#projetos" class="text-xs uppercase tracking-widest text-zinc-300 hover:text-primary transition-colors font-semibold">Projetos</a>
+                <a href="#servicos" class="text-xs uppercase tracking-widest text-zinc-300 hover:text-primary transition-colors font-semibold">Serviços</a>
+                <a href="#diferenciais" class="text-xs uppercase tracking-widest text-zinc-300 hover:text-primary transition-colors font-semibold">Diferenciais</a>
+                <a href="#contato" class="text-xs uppercase tracking-widest text-zinc-300 hover:text-primary transition-colors font-semibold">Contato</a>
+            </div>
+
+            <!-- Toolbar & Administration Button -->
+            <div class="flex items-center gap-4">
+                <button 
+                    onclick="openAdminControlPanel()"
+                    class="px-4 py-2 bg-zinc-900 border border-white/10 hover:border-primary/40 rounded-xl text-zinc-300 hover:text-white text-[10px] font-bold uppercase tracking-wider transition-all flex items-center gap-2"
+                >
+                    <i data-lucide="settings" class="w-4 h-4 text-primary"></i>
+                    <span class="hidden md:inline">Painel Administrativo</span>
+                </button>
+                <button 
+                    onclick="toggleMobileNavbarDropdown()"
+                    class="lg:hidden p-2.5 bg-zinc-900/80 border border-white/5 rounded-xl text-white"
+                >
+                    <i id="menu-btn-icon" data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu Dropdown -->
+        <div id="mobile-nav-panel" class="hidden lg:hidden bg-zinc-950/95 border-b border-white/5 py-6 px-6 mt-3 space-y-4 flex flex-col">
+            <a href="#inicio" onclick="toggleMobileNavbarDropdown()" class="text-xs uppercase tracking-widest text-zinc-300 hover:text-primary font-bold">Início</a>
+            <a href="#promocoes" onclick="toggleMobileNavbarDropdown()" id="mobile-promo-tab" class="text-xs uppercase tracking-widest text-primary font-bold hidden items-center gap-1.5">
+                <i data-lucide="gift" class="w-4 h-4"></i> Promoção Especial
+            </a>
+            <a href="#projetos" onclick="toggleMobileNavbarDropdown()" class="text-xs uppercase tracking-widest text-zinc-300 hover:text-primary font-bold">Portfólio / Projetos</a>
+            <a href="#servicos" onclick="toggleMobileNavbarDropdown()" class="text-xs uppercase tracking-widest text-zinc-300 hover:text-primary font-bold">Nossos Serviços</a>
+            <a href="#diferenciais" onclick="toggleMobileNavbarDropdown()" class="text-xs uppercase tracking-widest text-zinc-300 hover:text-primary font-bold">Diferenciais</a>
+            <a href="#contato" onclick="toggleMobileNavbarDropdown()" class="text-xs uppercase tracking-widest text-zinc-400 hover:text-primary font-extrabold">Solicitar Orçamento</a>
+        </div>
+    </nav>
+
+    <!-- 4. HERO SECTION -->
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center pt-32 pb-20 lg:py-0">
+        <div class="absolute inset-0 z-0">
+            <img 
+                id="hero-bg-img"
+                src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80" 
+                alt="LariArt Móveis sob Encomenda" 
+                class="w-full h-full object-cover opacity-25"
+            />
+            <div class="absolute inset-0 bg-gradient-to-b from-[#0B0B0B]/90 via-[#0B0B0B]/75 to-[#0B0B0B]"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-8">
+            <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
+                <i data-lucide="sparkles" class="w-4 h-4 text-primary animate-pulse"></i>
+                Mobiliário Comercial 100% sob Encomenda (Não Planejado)
+            </div>
+
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
+                <span id="hero-title-1" class="block text-white">LariArt</span>
+                <span id="hero-title-2" class="block text-primary leading-none mt-1">Móveis Sob Encomenda</span>
+                <span id="hero-title-3" class="block text-xl sm:text-3xl md:text-4xl font-light text-zinc-400 mt-4 tracking-normal italic">e Decorações Comerciais</span>
+            </h1>
+
+            <p id="hero-description" class="text-zinc-300 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed font-light">
+                Desenvolvemos displays, bancadas, carrinhos auxiliares e penteadeiras premium de alta densidade sob medida para dar o destaque que seu salão de beleza, barbearia ou escritório merece.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+                <a 
+                    id="hero-cta-link"
+                    href="#contato"
+                    class="w-full sm:w-auto px-8 py-4 bg-primary text-white text-xs font-extrabold uppercase tracking-widest rounded-xl hover:bg-primary/95 hover:-translate-y-0.5 transition-all shadow-xl shadow-primary/30 inline-flex items-center justify-center gap-2 group font-sans"
+                >
+                    Solicitar Meu Orçamento
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a 
+                    href="#projetos"
+                    class="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-zinc-700 hover:border-primary text-white text-xs font-extrabold uppercase tracking-widest rounded-xl transition-all inline-flex items-center justify-center"
+                >
+                    Ver Nosso Portfólio
+                </a>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-50">
+            <span class="text-[8px] uppercase tracking-widest text-zinc-500 font-bold">Confira nosso trabalho abaixo</span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-primary animate-bounce"></i>
+        </div>
+    </section>
+
+    <!-- 5. REAL-TIME PROMOTIONS SECTION -->
+    <section id="promocoes" class="py-24 bg-gradient-to-r from-[#0B0B0B] via-zinc-900 to-[#0B0B0B] border-y border-white/5 relative overflow-hidden hidden">
+        <div id="promo-banner-bg" class="absolute inset-0 bg-cover bg-center opacity-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-0 form-[#0B0B0B] to-[#0B0B0B]/40"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="bg-zinc-950/60 border border-primary/20 rounded-3xl p-8 md:p-12 lg:p-16 flex flex-col lg:flex-row items-center gap-12 backdrop-blur-md animate-fade-in">
+                <div class="flex-1 space-y-6">
+                    <div id="promo-badge" class="inline-flex items-center gap-2 bg-primary/20 text-primary border border-primary/30 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
+                        <i data-lucide="gift" class="w-4 h-4"></i> PROMOÇÃO ATIVA
+                    </div>
+                    
+                    <h2 id="promo-title" class="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                        Especial LariArt Para Negócios
+                    </h2>
+                    
+                    <p id="promo-desc" class="text-zinc-350 text-sm md:text-base leading-relaxed">
+                        Feche o projeto completo de móveis de seu estabelecimento comercial com a LariArt e ganhe um excelente carrinho auxiliar triplo reforçado ou espelho camarim para otimizar suas vendas.
+                    </p>
+
+                    <div class="inline-flex items-center gap-4 bg-zinc-900/60 border border-white/5 p-4 rounded-2xl">
+                        <div class="bg-primary/10 border border-primary/20 px-4 py-3 rounded-xl flex flex-col items-center">
+                            <span id="promo-accent" class="text-xl font-bold text-primary font-serif">Brinde Especial</span>
+                        </div>
+                        <div class="text-[11px] text-zinc-400 max-w-[200px] leading-snug font-medium">
+                            Oferta exclusiva e temporária válida somente para contatos confirmados pelo formulário ou WhatsApp.
+                        </div>
+                    </div>
+
+                    <div>
+                        <a 
+                            id="promo-whatsapp-link"
+                            href="#" 
+                            target="_blank" 
+                            class="w-full sm:w-auto px-8 py-4 bg-primary text-white text-xs font-bold uppercase tracking-widest rounded-xl transition-all shadow-lg inline-flex items-center justify-center gap-2 hover:bg-primary/90"
+                        >
+                            <i data-lucide="tag" class="w-4 h-4"></i>
+                            Garantir Essa Promoção Especial
+                        </a>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-5/12 aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10 shrink-0">
+                    <img 
+                        id="promo-preview-image" 
+                        src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=800&q=80" 
+                        alt="Promoção" 
+                        class="w-full h-full object-cover"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. VALUE METRIC GRAPHICS -->
+    <section class="py-16 bg-[#171717] border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 bg-zinc-900/40 border border-white/5 rounded-2xl text-center">
+                    <div class="text-3xl font-black text-primary font-serif mb-1">+230</div>
+                    <div class="text-[9px] uppercase tracking-widest text-zinc-400 font-bold">Móveis Entregues</div>
+                </div>
+                <div class="p-6 bg-zinc-900/40 border border-white/5 rounded-2xl text-center">
+                    <div class="text-3xl font-black text-primary font-serif mb-1">MDF 100%</div>
+                    <div class="text-[9px] uppercase tracking-widest text-zinc-400 font-bold">Sem Aglomerados</div>
+                </div>
+                <div class="p-6 bg-zinc-900/40 border border-white/5 rounded-2xl text-center">
+                    <div class="text-3xl font-black text-primary font-serif mb-1">Duração</div>
+                    <div class="text-[9px] uppercase tracking-widest text-zinc-400 font-bold">Acabamento Industrial</div>
+                </div>
+                <div class="p-6 bg-zinc-900/40 border border-white/5 rounded-2xl text-center">
+                    <div class="text-3xl font-black text-primary font-serif mb-1">Elite</div>
+                    <div class="text-[9px] uppercase tracking-widest text-zinc-400 font-bold">Móveis sob encomenda</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. PORTFOLIO GALLERY (COMPLETELY COMPLYING WITH CATEGORIES INSTRUCTIONS - KITCHENS/WARDROBES REMOVED) -->
+    <section id="projetos" class="py-24 bg-[#0B0B0B]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-primary text-xs uppercase tracking-widest font-black">Design Exclusivo sob Encomenda</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-black text-white leading-none">
+                    Móveis Corporativos <span class="text-primary">LariArt</span>
+                </h2>
+                <p class="text-zinc-400 text-xs sm:text-sm">
+                    Diferente de planejados limitados, nossos móveis sob encomenda são recortados e montados atendendo a milímetro de ergonomia de salão, manicure, barbearia, escritório e comércio geral.
+                </p>
+            </div>
+
+            <!-- Categories Buttons Row -->
+            <div class="flex flex-wrap justify-center gap-2 mb-12" id="categories-filter-row">
+                <!-- Programmatically generated categories to prevent typos -->
+            </div>
+
+            <!-- Dynamic Grid (Showing photo with readable description card directly below) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="gallery-grid-container">
+                <!-- Populated dynamically from Firebase or standard fallback library -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. DETAILED PROCESS TIMELINE -->
+    <section class="py-24 bg-[#171717] border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 max-w-2xl mx-auto space-y-4">
+                <span class="text-primary text-xs uppercase tracking-widest font-black font-sans">Compromisso do Início ao Fim</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-black text-white">Como Funciona Nosso Trabalho</h2>
+                <p class="text-zinc-400 text-xs sm:text-sm">Método profissional para garantir beleza, usabilidade e entrega em conformidade.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-zinc-900 border border-white/5 p-6 rounded-2xl relative overflow-hidden">
+                    <span class="absolute top-4 right-4 text-4xl font-serif text-primary/10 font-black">01</span>
+                    <h3 class="font-serif text-lg font-bold text-white mb-2">1. Briefing Prático</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Você nos conta o ramo de seu estabelecimento (barbearia, manicure, etc) e as necessidades básicas de displays e balcões.</p>
+                </div>
+                <div class="bg-zinc-900 border border-white/5 p-6 rounded-2xl relative overflow-hidden">
+                    <span class="absolute top-4 right-4 text-4xl font-serif text-primary/10 font-black">02</span>
+                    <h3 class="font-serif text-lg font-bold text-white mb-2">2. Detalhamento</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Definimos as medidas dos nichos, quantidade de prateleiras, tomadas extras e a cor do MDF de sua escolha.</p>
+                </div>
+                <div class="bg-zinc-900 border border-white/5 p-6 rounded-2xl relative overflow-hidden">
+                    <span class="absolute top-4 right-4 text-4xl font-serif text-primary/10 font-black">03</span>
+                    <h3 class="font-serif text-lg font-bold text-white mb-2">3. Orçamento Incomparável</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Geramos a proposta sob medida e ajustamos as condições de pagamento que viabilizem a sua reforma.</p>
+                </div>
+                <div class="bg-zinc-900 border border-white/5 p-6 rounded-2xl relative overflow-hidden">
+                    <span class="absolute top-4 right-4 text-4xl font-serif text-primary/10 font-black">04</span>
+                    <h3 class="font-serif text-lg font-bold text-white mb-2">4. Fabricação sob Medida</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Produzimos cada módulo de forma cuidadosa empregando encaixes duráveis e MDF impermeável nas bordas.</p>
+                </div>
+                <div class="bg-zinc-900 border border-white/5 p-6 rounded-2xl relative overflow-hidden">
+                    <span class="absolute top-4 right-4 text-4xl font-serif text-primary/10 font-black">05</span>
+                    <h3 class="font-serif text-lg font-bold text-white mb-2">5. Logística e Montagem</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Nossa equipe entrega no seu comércio e realiza a montagem no prumo, garantindo trilhos leves de gavetas.</p>
+                </div>
+                <div class="bg-zinc-900 border border-white/5 p-6 rounded-2xl relative overflow-hidden">
+                    <span class="absolute top-4 right-4 text-4xl font-serif text-primary/10 font-black">06</span>
+                    <h3 class="font-serif text-lg font-bold text-white mb-2">6. Inauguração e Sucesso</h3>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Seu negócio pronto para encantar e fidelizar mais clientes com uma imagem altamente moderna e profissional!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. CONTACT FORM SECTION -->
+    <section id="contato" class="py-24 bg-[#0B0B0B]">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <span class="text-primary text-xs uppercase tracking-widest font-black">Faça sua Encomenda</span>
+                <h2 class="font-serif text-3xl sm:text-5xl font-black text-white leading-none">Solicite Seus Móveis Comerciais</h2>
+                <p class="text-zinc-450 text-xs sm:text-sm">Preencha o formulário e receba nosso contato instantâneo para projeto.</p>
+            </div>
+
+            <div class="bg-[#171717] border border-white/5 p-6 sm:p-10 rounded-3xl shadow-2xl">
+                <form id="lead-form" onsubmit="handleLeadFormSubmission(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-[10px] text-zinc-405 uppercase font-bold tracking-widest text-zinc-400">Seu Nome / Razão Social</label>
+                            <input 
+                                required
+                                type="text" 
+                                id="form-name" 
+                                placeholder="Ex: Patrícia Albuquerque" 
+                                class="w-full px-4 py-3 bg-zinc-950 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-primary transition-colors"
+                            />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] text-zinc-405 uppercase font-bold tracking-widest text-zinc-400">Telefone / WhatsApp Comercial</label>
+                            <input 
+                                required
+                                type="text" 
+                                id="form-phone" 
+                                placeholder="Ex: (47) 99999-9999" 
+                                class="w-full px-4 py-3 bg-zinc-950 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-primary transition-colors"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-[10px] text-zinc-405 uppercase font-bold tracking-widest text-zinc-400">E-mail Comercial (Opcional)</label>
+                            <input 
+                                type="email" 
+                                id="form-email" 
+                                placeholder="seuemail@exemplo.com" 
+                                class="w-full px-4 py-3 bg-zinc-950 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-primary transition-colors"
+                            />
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] text-zinc-405 uppercase font-bold tracking-widest text-zinc-400">Foco Comercial Desejado</label>
+                            <select 
+                                id="form-type" 
+                                class="w-full px-4 py-3 bg-zinc-950 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-primary transition-colors"
+                            >
+                                <option value="Salão de Beleza">Salão de Beleza / Estética</option>
+                                <option value="Manicure">Manicure / Podologia</option>
+                                <option value="Escritórios">Escritório Particular / Co-working</option>
+                                <option value="Barbearias">Barbearia / Cabelaria Masculina</option>
+                                <option value="Tabacarias">Tabacaria / Lounge de Lazer</option>
+                                <option value="Lojas">Lojas / Vitrines / Expositores comerciais</option>
+                                <option value="Carrinho Auxiliar">Carrinho Auxiliar móvel</option>
+                                <option value="Penteadeiras">Penteadeira Camarim Suspensa</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-[10px] text-zinc-405 uppercase font-bold tracking-widest text-zinc-400">Descrição dos Móveis sob Encomenda</label>
+                        <textarea 
+                            required
+                            id="form-desc" 
+                            rows="4" 
+                            placeholder="Descreva detalhes como medidas aproximadas, cor de preferência e quantidade de gavetas ou nichos que você precisa." 
+                            class="w-full px-4 py-3 bg-zinc-950 border border-white/10 rounded-xl text-white text-sm focus:outline-none focus:border-primary transition-colors"
+                        ></textarea>
+                    </div>
+
+                    <div class="pt-2">
+                        <button 
+                            type="submit" 
+                            id="form-submit-btn"
+                            class="w-full py-4 bg-primary text-white text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-primary/95 transition-all inline-flex items-center justify-center gap-2"
+                        >
+                            <i data-lucide="message-square" class="w-4 h-4"></i>
+                            Gravar Pedido e Falar no WhatsApp
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. LUXURY EDITORIAL FOOTER -->
+    <footer class="bg-zinc-950 border-t border-white/10 py-16 pb-28 lg:pb-16 text-zinc-400 text-xs sm:text-sm">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <div class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-serif font-extrabold text-lg">L</div>
+                    <span class="font-serif text-xl font-bold tracking-widest text-white">LariArt</span>
+                </div>
+                <p class="text-zinc-450 leading-relaxed max-w-sm">
+                    Especialistas em desenvolvimento de móveis robustos sob encomenda e displays de alta beleza comercial para marcas e profissionais que buscam excelência.
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-white font-serif text-base font-bold">Contato Comercial</h4>
+                <p class="flex items-center gap-2">
+                    <i data-lucide="phone" class="w-4 h-4 text-primary shrink-0"></i>
+                    <span id="footer-contact-num">+55 (47) 99644-3619</span>
+                </p>
+                <p class="flex items-center gap-2">
+                    <i data-lucide="mail" class="w-4 h-4 text-primary shrink-0"></i>
+                    <span>contato@lariartmoveis.com.br</span>
+                </p>
+                <p>Santa Catarina - Brasil / Atendimento sob Encomenda</p>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-white font-serif text-base font-bold">Siga Nossas Redes</h4>
+                <div class="flex gap-4">
+                    <a href="https://www.instagram.com/lariartmoveis/" target="_blank" class="w-10 h-10 bg-zinc-900 border border-white/5 rounded-xl flex items-center justify-center hover:text-primary hover:border-primary/40 transition-colors">
+                        <i data-lucide="instagram" class="w-5 h-5"></i>
+                    </a>
+                    <a href="https://www.facebook.com/p/LariArt-M%C3%B3veis-100087122614398/" target="_blank" class="w-10 h-10 bg-zinc-900 border border-white/5 rounded-xl flex items-center justify-center hover:text-primary hover:border-primary/40 transition-colors">
+                        <i data-lucide="facebook" class="w-5 h-5"></i>
+                    </a>
+                </div>
+                <p class="text-[10px] text-zinc-500">Desenvolvido com tecnologia de armazenamento em tempo real integrada.</p>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 border-t border-white/5 pt-8 text-center flex flex-col md:flex-row justify-between items-center gap-4 text-[11px] text-zinc-500">
+            <p>&copy; 2026 LariArt Móveis sob Encomenda. Todos os direitos reservados.</p>
+            <button onclick="openAdminControlPanel()" class="text-primary hover:underline font-bold uppercase tracking-widest text-[10px]">Portal da Marcenaria</button>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX SLIDER MODAL -->
+    <div id="lightbox" class="fixed inset-0 bg-[#0B0B0B]/98 z-[110000] hidden flex-col justify-center items-center px-6 backdrop-blur-md" onclick="closeLightboxModal()">
+        <button class="absolute top-6 right-6 text-white p-3 bg-white/5 rounded-full hover:bg-white/10 transition-colors" onclick="closeLightboxModal(); event.stopPropagation()">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+        
+        <div class="relative max-w-4xl w-full flex justify-center items-center" onclick="event.stopPropagation()">
+            <button class="absolute left-0 text-white p-2 sm:p-4 bg-zinc-900/80 rounded-full hover:bg-zinc-800 transition-colors border border-white/5" onclick="navigateLightboxImage(-1)">
+                <i data-lucide="chevron-left" class="w-6 h-6 sm:w-8 sm:h-8"></i>
+            </button>
+            
+            <div class="flex flex-col items-center max-h-[80vh] overflow-hidden">
+                <img id="lightbox-main-img" src="" alt="Ampliado" class="max-w-[85vw] max-h-[60vh] object-contain rounded-2xl shadow-2xl border border-white/10" referrerPolicy="no-referrer" />
+                <div class="text-center mt-6 max-w-2xl px-4">
+                    <span id="lightbox-category" class="text-[10px] text-primary uppercase font-bold tracking-widest">Categoria</span>
+                    <h4 id="lightbox-title" class="font-serif text-white text-lg sm:text-2xl mt-1 font-bold">Título do projeto</h4>
+                    <p id="lightbox-desc" class="text-zinc-400 text-xs sm:text-sm mt-2 leading-relaxed">Descrição detalhada do projeto.</p>
+                </div>
+            </div>
+
+            <button class="absolute right-0 text-white p-2 sm:p-4 bg-zinc-900/80 rounded-full hover:bg-zinc-800 transition-colors border border-white/5" onclick="navigateLightboxImage(1)">
+                <i data-lucide="chevron-right" class="w-6 h-6 sm:w-8 sm:h-8"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ========================================================================================= -->
+    <!-- REAL-TIME ADMINISTRATOR CONTROL PANEL (CMS CONNECTED OVER FIREBASE VIA CDN FOR PORTABILITY) -->
+    <!-- ========================================================================================= -->
+    <div id="admin-panel" class="fixed inset-y-0 right-0 w-full max-w-lg bg-zinc-900 border-l border-white/10 z-[30000] shadow-2xl translate-x-full transition-transform duration-500 flex flex-col">
+        <!-- Panel Header -->
+        <div class="p-6 border-b border-white/10 flex items-center justify-between bg-zinc-950/45">
+            <div class="flex items-center gap-2 text-primary">
+                <i data-lucide="settings-2" class="w-5 h-5"></i>
+                <h3 class="font-serif text-lg font-bold text-white uppercase tracking-wider">Painel Administrativo</h3>
+            </div>
+            <button onclick="closeAdminControlPanel()" class="text-zinc-400 hover:text-white p-2 rounded-xl hover:bg-white/5 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- AUTHENTICATION FORM SCREEN -->
+        <div id="admin-auth-screen" class="p-8 flex-1 flex flex-col justify-center items-center space-y-6">
+            <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center text-primary border border-primary/20 shadow-lg shadow-primary/20">
+                <i data-lucide="lock" class="w-6 h-6"></i>
+            </div>
+            <div class="text-center space-y-1 max-w-sm">
+                <h4 class="text-white text-base font-bold font-serif uppercase tracking-wider">Membros da Marcenaria</h4>
+                <p class="text-zinc-450 text-[11px] text-zinc-400">Entre com a chave de administrador LariArt para realizar a edição do site em tempo real.</p>
+            </div>
+            <div class="w-full max-w-xs space-y-4">
+                <div class="space-y-1">
+                    <label class="text-[9px] uppercase text-zinc-400 tracking-wider">Chave de Acesso Admin</label>
+                    <input 
+                        type="password" 
+                        id="admin-password-field" 
+                        placeholder="Digite a chave..." 
+                        class="w-full px-4 py-3 bg-zinc-950 border border-white/10 rounded-xl text-white text-center font-bold tracking-widest focus:outline-none focus:border-primary transition-colors text-sm"
+                    />
+                </div>
+                <button onclick="verifyAdminCredentials()" class="w-full py-3 bg-primary text-white text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-primary/90 flex items-center justify-center gap-2 shadow-lg shadow-primary/20">
+                    <i data-lucide="unlock" class="w-4 h-4"></i>
+                    Acessar Configurações
+                </button>
+            </div>
+        </div>
+
+        <!-- AUTHENTICATED MANAGEMENT WORKSPACE -->
+        <div id="admin-workspace" class="flex-1 flex flex-col overflow-hidden hidden">
+            <!-- Navigation Tabs for CMS -->
+            <div class="flex border-b border-white/5 bg-zinc-950/20 text-[10px]">
+                <button id="tab-geral-btn" onclick="showAdminTab('geral')" class="flex-1 py-4 font-bold uppercase tracking-widest text-center text-primary border-b-2 border-primary hover:bg-white/5 transition-all">Geral</button>
+                <button id="tab-promocoes-btn" onclick="showAdminTab('promocoes')" class="flex-1 py-4 font-bold uppercase tracking-widest text-center text-zinc-400 border-b-2 border-transparent hover:bg-white/5 transition-all">Promoções</button>
+                <button id="tab-fotos-btn" onclick="showAdminTab('fotos')" class="flex-1 py-4 font-bold uppercase tracking-widest text-center text-zinc-400 border-b-2 border-transparent hover:bg-white/5 transition-all">Fotos</button>
+                <button id="tab-pedidos-btn" onclick="showAdminTab('pedidos')" class="flex-1 py-4 font-bold uppercase tracking-widest text-center text-zinc-400 border-b-2 border-transparent hover:bg-white/5 transition-all">Pedidos</button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="flex-1 overflow-y-auto p-6 space-y-6">
+                
+                <!-- CMS TAB: GENERAL STRINGS -->
+                <div id="cms-tab-geral" class="space-y-4">
+                    <h4 class="text-white font-serif text-sm border-b border-white/5 pb-2 uppercase tracking-widest font-bold">Informações Básicas</h4>
+                    
+                    <div class="space-y-1">
+                        <label class="text-[9px] text-zinc-450 uppercase font-black uppercase tracking-wider text-zinc-400">WhatsApp de Atendimento</label>
+                        <input type="text" id="admin-cfg-whatsapp" class="w-full px-3 py-2 bg-zinc-950 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary" />
+                        <span class="text-[9px] text-zinc-500">Formato: DDI + DDD + Número Ex: 5547996443619</span>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[9px] text-zinc-450 uppercase font-black uppercase tracking-wider text-zinc-400">Mensagem Inicial Padrão</label>
+                        <input type="text" id="admin-cfg-whatsapp-msg" class="w-full px-3 py-2 bg-zinc-950 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary" />
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[9px] text-zinc-450 uppercase font-black uppercase tracking-wider text-zinc-400">Hero BG Image (URL)</label>
+                        <input type="text" id="admin-cfg-hero-bg" class="w-full px-3 py-2 bg-zinc-950 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary" />
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[9px] text-zinc-450 uppercase font-black uppercase tracking-wider text-zinc-400">Título 1</label>
+                            <input type="text" id="admin-cfg-hero-t1" class="w-full px-3 py-2 bg-zinc-950 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary" />
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[9px] text-zinc-450 uppercase font-black uppercase tracking-wider text-zinc-400">Título 2</label>
+                            <input type="text" id="admin-cfg-hero-t2" class="w-full px-3 py-2 bg-zinc-950 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary" />
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[9px] text-zinc-450 uppercase font-black uppercase tracking-wider text-zinc-400">Título 3 / Legenda</label>
+                        <input type="text" id="admin-cfg-hero-t3" class="w-full px-3 py-2 bg-zinc-950 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary" />
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[9px] text-zinc-450 uppercase font-black uppercase tracking-wider text-zinc-400">Descrição Comercial Hero</label>
+                        <textarea id="admin-cfg-hero-desc" rows="3" class="w-full px-3 py-2 bg-zinc-950 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary"></textarea>
+                    </div>
+
+                    <button onclick="actionSaveGeneralConfig()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 rounded-xl text-white text-[10px] font-bold uppercase tracking-widest mt-2">
+                        Gravar Textos Básicos
+                    </button>
+                </div>
+
+                <!-- CMS TAB: PROMOTIONS SECTION -->
+                <div id="cms-tab-promocoes" class="space-y-4 hidden">
+                    <h4 class="text-white font-serif text-sm border-b border-white/5 pb-2 uppercase tracking-widest font-bold">Configuração de Promoções</h4>
+                    
+                    <div class="p-4 bg-zinc-950 border border-white/5 rounded-2xl flex items-center justify-between">
+                        <div>
+                            <span class="block text-xs font-bold text-white">Status da Promoção</span>
+                            <span class="text-[9px] text-zinc-500">Exibir seção temporária de descontos</span>
+                        </div>
+                        <input type="checkbox" id="admin-cfg-promo-chk" class="w-5 h-5 rounded accent-primary border-white/15" />
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="space-y-1">
+                            <label class="text-[9px] text-zinc-450 uppercase font-black tracking-wider text-zinc-400">Tag da Oferta</label>
+                            <input type="text" id="admin-cfg-promo-tag" class="w-full px-3 py-2 bg-zinc-950 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary" />
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[9px] text-zinc-450 uppercase font-black tracking-wider text-zinc-400">Título da Promoção</label>
+                            <input type="text" id="admin-cfg-promo-title" class="w-full px-3 py-2 bg-zinc-950 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary" />
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[9px] text-zinc-450 uppercase font-black tracking-wider text-zinc-400">MDF Destaque (Etiqueta Brinde)</label>
+                            <input type="text" id="admin-cfg-promo-accent" class="w-full px-3 py-2 bg-zinc-950 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary" />
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[9px] text-zinc-450 uppercase font-black tracking-wider text-zinc-400">Link Imagen (Destaque direita)</label>
+                            <input type="text" id="admin-cfg-promo-img" class="w-full px-3 py-2 bg-zinc-950 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary" />
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[9px] text-zinc-450 uppercase font-black tracking-wider text-zinc-400">Descrição Comercial da Oferta</label>
+                            <textarea id="admin-cfg-promo-desc" rows="4" class="w-full px-3 py-2 bg-zinc-950 border border-white/10 rounded-lg text-white text-xs focus:outline-none focus:border-primary"></textarea>
+                        </div>
+                    </div>
+
+                    <button onclick="actionSavePromoConfig()" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 rounded-xl text-white text-[10px] font-bold uppercase tracking-widest">
+                        Gravar Configuração de Promoção
+                    </button>
+                </div>
+
+                <!-- CMS TAB: PHOTO UPLOAD AND MANAGEMENT -->
+                <div id="cms-tab-fotos" class="space-y-4 hidden">
+                    <div class="flex justify-between items-center border-b border-white/5 pb-2">
+                        <h4 class="text-white font-serif text-sm uppercase tracking-widest font-bold">Galeria Permanente</h4>
+                        <button onclick="actionAddNewGalleryPhoto()" class="px-2.5 py-1.5 bg-primary/20 text-primary border border-primary/30 rounded-lg text-[9px] font-bold flex items-center gap-1">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add Foto
+                        </button>
+                    </div>
+
+                    <div id="admin-gallery-input-list" class="space-y-4">
+                        <!-- Filled from Firebase real-time on snapshot -->
+                    </div>
+                </div>
+
+                <!-- CMS TAB: LEADS / MESSAGES RECEIVED -->
+                <div id="cms-tab-pedidos" class="space-y-4 hidden">
+                    <h4 class="text-white font-serif text-sm border-b border-white/5 pb-2 uppercase tracking-widest font-bold">Pedidos em Tempo Real</h4>
+                    <div id="admin-leads-list" class="space-y-3">
+                        <!-- Filled with customer leads -->
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Administrator controls footer -->
+            <div class="p-6 bg-zinc-950 border-t border-white/5 text-center text-[10px] text-zinc-500">
+                Logado com sucesso. Dados persistentes em tempo real.
+            </div>
+        </div>
+    </div>
+
+    <!-- SDK FIREBASE INTEGRADO VIA CDN PARA HTML ÚNICO AUTO-SUFICIENTE -->
+    <!-- Utilizando a versão compatível com módulo para conexões reais em tempo real sem bundling -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { 
+            getFirestore, 
+            doc, 
+            getDoc, 
+            setDoc, 
+            addDoc, 
+            collection, 
+            onSnapshot, 
+            updateDoc, 
+            deleteDoc, 
+            serverTimestamp 
+        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Firebase Configuration (Matching user's registered project details)
+        const firebaseConfig = {
+            projectId: "plated-center-kf4nj",
+            appId: "1:741199081672:web:8a99c2faa45a4d0519b5fd",
+            apiKey: "AIzaSyDVF8RaqUmt-5hOZnqMq2LpUtoXcf5Iba8",
+            authDomain: "plated-center-kf4nj.firebaseapp.com",
+            databaseId: "ai-studio-2e1e8669-75a0-4bd7-8c38-52ce96cae753",
+            storageBucket: "plated-center-kf4nj.firebasestorage.app",
+            messagingSenderId: "741199081672"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Global variables updated sequentially
+        let siteConfig = null;
+        let galleryItems = [];
+        let leads = [];
+        let categoryActive = "Todos";
+        let lightboxCurrentIdx = null;
+
+        // Categories matching user's requests strictly excluding simple wardrobes/kitchens
+        const categoriesList = [
+            "Todos", 
+            "Salão de Beleza", 
+            "Manicure", 
+            "Escritórios", 
+            "Barbearias", 
+            "Tabacarias", 
+            "Lojas", 
+            "Carrinho Auxiliar", 
+            "Penteadeiras"
+        ];
+
+        // 1. Loader screen progression animations
+        let loadPercent = 0;
+        const progressInterval = setInterval(() => {
+            loadPercent += 10;
+            if (loadPercent <= 100) {
+                document.getElementById('loader-progress-bar').style.width = loadPercent + '%';
+                document.getElementById('loader-progress-val').innerText = loadPercent + '% carregando';
+            }
+            if (loadPercent >= 100) {
+                clearInterval(progressInterval);
+                setTimeout(() => {
+                    const welcomeLoader = document.getElementById("welcome-loader");
+                    if (welcomeLoader) {
+                        welcomeLoader.style.opacity = '0';
+                        welcomeLoader.style.pointerEvents = 'none';
+                        setTimeout(() => welcomeLoader.remove(), 700);
+                    }
+                }, 400);
+            }
+        }, 80);
+
+        // Toast custom triggers
+        function triggerSystemToast(message, isSuccess = true) {
+            const toastElement = document.getElementById("toast");
+            const iconWrapper = document.getElementById("toast-icon-wrapper");
+            const textElement = document.getElementById("toast-text");
+            
+            textElement.innerText = message;
+            
+            if (isSuccess) {
+                iconWrapper.className = "w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-emerald-500/10 text-emerald-400";
+                iconWrapper.innerHTML = `<i data-lucide="check" class="w-5 h-5"></i>`;
+            } else {
+                iconWrapper.className = "w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-red-500/10 text-primary";
+                iconWrapper.innerHTML = `<i data-lucide="info" class="w-5 h-5"></i>`;
+            }
+            
+            lucide.createIcons();
+            toastElement.classList.add("toast-active");
+            
+            setTimeout(() => {
+                toastElement.classList.remove("toast-active");
+            }, 4000);
+        }
+
+        // Real-time Database Snapshot: Site Configuration
+        const configDocRef = doc(db, "configs", "settings");
+        onSnapshot(configDocRef, (snapshot) => {
+            if (snapshot.exists()) {
+                siteConfig = snapshot.data();
+                applyDownloadedConfigs();
+            }
+        });
+
+        // Real-time Database Snapshot: Gallery Items
+        const galleryColRef = collection(db, "gallery");
+        onSnapshot(galleryColRef, (snapshot) => {
+            const items = [];
+            snapshot.forEach((doc) => {
+                items.push(doc.data());
+            });
+            // Sort ascending by order
+            items.sort((a, b) => (a.order || 0) - (b.order || 0));
+            galleryItems = items;
+            renderDynamicGallery();
+            renderAdminGalleryList();
+        });
+
+        // Real-time Database Snapshot: Customer Leads
+        const leadsColRef = collection(db, "leads");
+        onSnapshot(leadsColRef, (snapshot) => {
+            const list = [];
+            snapshot.forEach((doc) => {
+                list.push({ ...doc.data(), id: doc.id });
+            });
+            // Sort by createdAt descending
+            list.sort((a, b) => {
+                const secA = a.createdAt?.seconds || 0;
+                const secB = b.createdAt?.seconds || 0;
+                return secB - secA;
+            });
+            leads = list;
+            renderAdminLeadsList();
+        });
+
+        // Apply dynamic text and values to the landing page
+        function applyDownloadedConfigs() {
+            if (!siteConfig) return;
+
+            document.getElementById("hero-bg-img").src = siteConfig.heroBg;
+            document.getElementById("hero-title-1").innerText = siteConfig.heroT1;
+            document.getElementById("hero-title-2").innerText = siteConfig.heroT2;
+            document.getElementById("hero-title-3").innerText = siteConfig.heroT3;
+            document.getElementById("hero-description").innerText = siteConfig.heroDesc;
+            document.getElementById("hero-cta-link").href = "#contato";
+
+            document.getElementById("footer-contact-num").innerText = `+${siteConfig.whatsapp.substring(0,2)} (${siteConfig.whatsapp.substring(2,4)}) ${siteConfig.whatsapp.substring(4,9)}-${siteConfig.whatsapp.substring(9)}`;
+
+            if (siteConfig.promoActive) {
+                document.getElementById("promocoes").classList.remove("hidden");
+                document.getElementById("nav-promo-tab").classList.remove("hidden");
+                document.getElementById("mobile-promo-tab").classList.remove("hidden");
+                
+                document.getElementById("promo-badge").innerHTML = `<i data-lucide="gift" class="w-4 h-4"></i> ${siteConfig.promoTag}`;
+                document.getElementById("promo-title").innerText = siteConfig.promoTitle;
+                document.getElementById("promo-desc").innerText = siteConfig.promoDesc;
+                document.getElementById("promo-accent").innerText = siteConfig.promoAccent;
+                document.getElementById("promo-preview-image").src = siteConfig.promoImg;
+                document.getElementById("promo-banner-bg").style.backgroundImage = `url(${siteConfig.promoImg})`;
+                
+                const promoWa = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Olá, LariArt! Me interessei pela promoção "${siteConfig.promoTitle}"!`)}`;
+                document.getElementById("promo-whatsapp-link").href = promoWa;
+            } else {
+                document.getElementById("promocoes").classList.add("hidden");
+                document.getElementById("nav-promo-tab").classList.add("hidden");
+                document.getElementById("mobile-promo-tab").classList.add("hidden");
+            }
+
+            // Fill admin panel inputs with loaded database configs
+            document.getElementById("admin-cfg-whatsapp").value = siteConfig.whatsapp;
+            document.getElementById("admin-cfg-whatsapp-msg").value = siteConfig.whatsappMsg;
+            document.getElementById("admin-cfg-hero-bg").value = siteConfig.heroBg;
+            document.getElementById("admin-cfg-hero-t1").value = siteConfig.heroT1;
+            document.getElementById("admin-cfg-hero-t2").value = siteConfig.heroT2;
+            document.getElementById("admin-cfg-hero-t3").value = siteConfig.heroT3;
+            document.getElementById("admin-cfg-hero-desc").value = siteConfig.heroDesc;
+
+            document.getElementById("admin-cfg-promo-chk").checked = siteConfig.promoActive;
+            document.getElementById("admin-cfg-promo-tag").value = siteConfig.promoTag;
+            document.getElementById("admin-cfg-promo-title").value = siteConfig.promoTitle;
+            document.getElementById("admin-cfg-promo-accent").value = siteConfig.promoAccent;
+            document.getElementById("admin-cfg-promo-img").value = siteConfig.promoImg;
+            document.getElementById("admin-cfg-promo-desc").value = siteConfig.promoDesc;
+
+            lucide.createIcons();
+        }
+
+        // Render landing page category filtered gallery
+        function renderDynamicGallery() {
+            const container = document.getElementById("gallery-grid-container");
+            if (!container) return;
+            container.innerHTML = "";
+
+            const filtered = categoryActive === "Todos" 
+                ? galleryItems 
+                : galleryItems.filter(i => i.category === categoryActive);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-16 text-center border border-dashed border-white/10 rounded-3xl">
+                        <p class="text-zinc-500 italic text-sm">Nenhum projeto encontrado nesta categoria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach((item) => {
+                const actualIndex = galleryItems.findIndex(g => g.id === item.id);
+                const card = document.createElement("div");
+                card.className = "flex flex-col group h-full";
+                
+                card.innerHTML = `
+                    <div class="relative aspect-square w-full rounded-2xl overflow-hidden cursor-pointer border border-white/5 bg-zinc-900/60 shadow-xl" id="card-${item.id}">
+                        <img 
+                            src="${item.src}" 
+                            alt="${item.alt}" 
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            referrerPolicy="no-referrer"
+                        />
+                        <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="px-4 py-2 bg-zinc-950/90 rounded-xl text-[10px] uppercase tracking-widest font-extrabold border border-white/10">Ver Detalhes</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 px-1 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-1.5">
+                                <span class="text-[10px] font-bold text-primary uppercase tracking-widest">${item.category}</span>
+                                <span class="text-[9px] text-zinc-500 font-mono">#${item.order}</span>
+                            </div>
+                            <h3 class="font-serif text-lg font-bold text-white group-hover:text-primary transition-colors leading-snug">${item.alt}</h3>
+                            <p class="text-zinc-400 text-xs mt-2 leading-relaxed">${item.desc}</p>
+                        </div>
+                        
+                        <div class="mt-4 pt-3 border-t border-white/5 flex justify-between items-center text-[10px] sm:text-[11px] font-bold uppercase tracking-widest">
+                            <span class="text-zinc-500 inline-flex items-center gap-1">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> Qualidade Premium
+                            </span>
+                            <a 
+                                href="https://wa.me/${siteConfig?.whatsapp || '5547996443619'}?text=${encodeURIComponent(`Olá, LariArt! Gostaria de consultar um orçamento para o projeto da foto: ${item.alt} (#${item.order}).`)}" 
+                                target="_blank"
+                                class="text-primary hover:text-white transition-colors"
+                            >
+                                Consultar Já →
+                            </a>
+                        </div>
+                    </div>
+                `;
+
+                // Add click listener direct to image container
+                card.querySelector(`#card-${item.id}`).addEventListener('click', () => {
+                    openLightboxSlider(actualIndex);
+                });
+
+                container.appendChild(card);
+            });
+
+            lucide.createIcons();
+        }
+
+        // Render landing category buttons row
+        function renderCategoriesFilterRow() {
+            const container = document.getElementById("categories-filter-row");
+            if (!container) return;
+            container.innerHTML = "";
+
+            categoriesList.forEach((category) => {
+                const btn = document.createElement("button");
+                btn.className = `px-4 py-2 rounded-xl text-[10px] sm:text-xs uppercase font-extrabold tracking-widest border transition-all ${
+                    category === categoryActive 
+                      ? "bg-primary text-white border-primary shadow-lg shadow-primary/25" 
+                      : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700"
+                }`;
+                btn.innerText = category;
+                
+                btn.onclick = () => {
+                    categoryActive = category;
+                    renderCategoriesFilterRow();
+                    renderDynamicGallery();
+                };
+
+                container.appendChild(btn);
+            });
+        }
+
+        // Lightbox detailed slider actions
+        function openLightboxSlider(index) {
+            if (index < 0 || index >= galleryItems.length) return;
+            lightboxCurrentIdx = index;
+            
+            const item = galleryItems[index];
+            document.getElementById("lightbox-main-img").src = item.src;
+            document.getElementById("lightbox-category").innerText = item.category;
+            document.getElementById("lightbox-title").innerText = item.alt;
+            document.getElementById("lightbox-desc").innerText = item.desc;
+
+            document.getElementById("lightbox").classList.remove("hidden");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeLightboxModal() {
+            document.getElementById("lightbox").classList.add("hidden");
+            document.body.style.overflow = "auto";
+        }
+
+        function navigateLightboxImage(direction) {
+            let nextVal = lightboxCurrentIdx + direction;
+            if (nextVal < 0) nextVal = galleryItems.length - 1;
+            if (nextVal >= galleryItems.length) nextVal = 0;
+            openLightboxSlider(nextVal);
+        }
+
+        // Navbar Scroll behavior
+        window.addEventListener("scroll", () => {
+            const navbar = document.getElementById("main-navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("glass-nav");
+                navbar.classList.add("py-3.5");
+                navbar.classList.remove("py-5");
+            } else {
+                navbar.classList.remove("glass-nav");
+                navbar.classList.remove("py-3.5");
+                navbar.classList.add("py-5");
+            }
+        });
+
+        // Contact lead form handler
+        async function handleLeadFormSubmission(e) {
+            e.preventDefault();
+            const name = document.getElementById("form-name").value.trim();
+            const phone = document.getElementById("form-phone").value.trim();
+            const email = document.getElementById("form-email").value.trim();
+            const type = document.getElementById("form-type").value;
+            const desc = document.getElementById("form-desc").value.trim();
+
+            if (!name || !phone || !desc) {
+                triggerSystemToast("Por favor, preencha nome, celular e a descrição.", false);
+                return;
+            }
+
+            const btn = document.getElementById("form-submit-btn");
+            btn.disabled = true;
+            btn.innerText = "Gravando pedido...";
+
+            try {
+                // Submit lead to Firebase Real-time
+                await addDoc(collection(db, "leads"), {
+                    name,
+                    phone,
+                    email: email || "Não informado",
+                    furnitureType: type,
+                    description: desc,
+                    createdAt: serverTimestamp(),
+                    status: "novo"
+                });
+
+                triggerSystemToast("Pedido gravado na base de dados LariArt!", true);
+
+                // Open WhatsApp immediately with detailed message
+                const destValDefault = siteConfig?.whatsapp || "5547996443619";
+                const textVal = `Olá, LariArt! Me chamo *${name}*.\n\n*Solicitação de Móvel sob Encomenda!*\n\n• *Tipo de Móvel:* ${type}\n• *Celular:* ${phone}\n• *E-mail:* ${email || 'Não informado'}\n\n*Especificação Desejada:*\n${desc}\n\n_Enviado em tempo real pelo site LariArt_`;
+                
+                const waRedirection = `https://wa.me/${destValDefault}?text=${encodeURIComponent(textVal)}`;
+                
+                document.getElementById("lead-form").reset();
+                setTimeout(() => {
+                    window.open(waRedirection, "_blank");
+                }, 1000);
+
+            } catch (err) {
+                console.error(err);
+                triggerSystemToast("Erro na gravação. Envie diretamente pelo ícone do WhatsApp.", false);
+            } finally {
+                btn.disabled = false;
+                btn.innerText = "Gravar Pedido e Falar no WhatsApp";
+                lucide.createIcons();
+            }
+        }
+
+        // ==============================================================================
+        // CORE INTEGRATED BACKSPACE LARIART CMS CHANNELS
+        // ==============================================================================
+        let adminIsConnectedAuth = false;
+
+        function openAdminControlPanel() {
+            document.getElementById("admin-panel").classList.remove("translate-x-full");
+            document.getElementById("admin-password-field").focus();
+        }
+
+        function closeAdminControlPanel() {
+            document.getElementById("admin-panel").classList.add("translate-x-full");
+        }
+
+        // Hardcoded admin key changed programmatically according to prompt instruction: adminlariart123
+        function verifyAdminCredentials() {
+            const pasVal = document.getElementById("admin-password-field").value;
+            if (pasVal === "adminlariart123") {
+                adminIsConnectedAuth = true;
+                document.getElementById("admin-auth-screen").classList.add("hidden");
+                document.getElementById("admin-workspace").classList.remove("hidden");
+                triggerSystemToast("Chave Administrativa confirmada!", true);
+                applyDownloadedConfigs();
+            } else {
+                triggerSystemToast("Código incorreto. Utilize a chave atualizada.", false);
+            }
+        }
+
+        function showAdminTab(tabName) {
+            // Unselect previous
+            document.getElementById("tab-geral-btn").className = "flex-1 py-4 font-bold uppercase tracking-widest text-center text-zinc-400 border-b-2 border-transparent hover:bg-white/5 transition-all";
+            document.getElementById("tab-promocoes-btn").className = "flex-1 py-4 font-bold uppercase tracking-widest text-center text-zinc-400 border-b-2 border-transparent hover:bg-white/5 transition-all";
+            document.getElementById("tab-fotos-btn").className = "flex-1 py-4 font-bold uppercase tracking-widest text-center text-zinc-400 border-b-2 border-transparent hover:bg-white/5 transition-all";
+            document.getElementById("tab-pedidos-btn").className = "flex-1 py-4 font-bold uppercase tracking-widest text-center text-zinc-400 border-b-2 border-transparent hover:bg-white/5 transition-all";
+
+            document.getElementById(`tab-${tabName}-btn`).className = "flex-1 py-4 font-bold uppercase tracking-widest text-center text-primary border-b-2 border-primary hover:bg-white/5 transition-all";
+
+            document.getElementById("cms-tab-geral").classList.add("hidden");
+            document.getElementById("cms-tab-promocoes").classList.add("hidden");
+            document.getElementById("cms-tab-fotos").classList.add("hidden");
+            document.getElementById("cms-tab-pedidos").classList.add("hidden");
+
+            document.getElementById(`cms-tab-${tabName}`).classList.remove("hidden");
+        }
+
+        // CMS SAVE ACTIONS
+        async function actionSaveGeneralConfig() {
+            if (!adminIsConnectedAuth) return;
+            
+            try {
+                const whatsapp = document.getElementById("admin-cfg-whatsapp").value.trim();
+                const whatsappMsg = document.getElementById("admin-cfg-whatsapp-msg").value;
+                const heroBg = document.getElementById("admin-cfg-hero-bg").value.trim();
+                const heroT1 = document.getElementById("admin-cfg-hero-t1").value;
+                const heroT2 = document.getElementById("admin-cfg-hero-t2").value;
+                const heroT3 = document.getElementById("admin-cfg-hero-t3").value;
+                const heroDesc = document.getElementById("admin-cfg-hero-desc").value;
+
+                await updateDoc(configDocRef, {
+                    whatsapp,
+                    whatsappMsg,
+                    heroBg,
+                    heroT1,
+                    heroT2,
+                    heroT3,
+                    heroDesc
+                });
+
+                triggerSystemToast("Informações principais salvas na nuvem!", true);
+            } catch (err) {
+                console.error(err);
+                triggerSystemToast("Falha de gravação de textos.", false);
+            }
+        }
+
+        async function actionSavePromoConfig() {
+            if (!adminIsConnectedAuth) return;
+
+            try {
+                const active = document.getElementById("admin-cfg-promo-chk").checked;
+                const tag = document.getElementById("admin-cfg-promo-tag").value;
+                const title = document.getElementById("admin-cfg-promo-title").value;
+                const accent = document.getElementById("admin-cfg-promo-accent").value;
+                const img = document.getElementById("admin-cfg-promo-img").value.trim();
+                const desc = document.getElementById("admin-cfg-promo-desc").value;
+
+                await updateDoc(configDocRef, {
+                    promoActive: active,
+                    promoTag: tag,
+                    promoTitle: title,
+                    promoAccent: accent,
+                    promoImg: img,
+                    promoDesc: desc
+                });
+
+                triggerSystemToast("Condições promocionais gravadas!", true);
+            } catch (err) {
+                console.error(err);
+                triggerSystemToast("Falha ao salvar especificações de promo.", false);
+            }
+        }
+
+        // Render editable gallery list on the admin workspace
+        function renderAdminGalleryList() {
+            const list = document.getElementById("admin-gallery-input-list");
+            if (!list) return;
+            list.innerHTML = "";
+
+            galleryItems.forEach((item, index) => {
+                const itemBox = document.createElement("div");
+                itemBox.className = "p-4 bg-zinc-950/80 border border-white/5 rounded-2xl space-y-3 relative";
+                
+                itemBox.innerHTML = `
+                    <div class="flex justify-between items-center bg-zinc-900 px-3 py-1.5 rounded-lg">
+                        <span class="text-[10px] font-bold text-primary uppercase">Móvel #${index + 1}</span>
+                        <div class="flex gap-2">
+                            <button id="del-btn-${item.id}" class="text-red-400 hover:text-red-300 p-1 bg-red-500/10 hover:bg-red-500/20 rounded-lg transition-colors">
+                                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[8px] text-zinc-500 uppercase">Caminho da Imagem (URL ou Arquivo)</label>
+                        <input type="text" id="src-${item.id}" value="${item.src}" class="w-full px-3 py-1.5 bg-zinc-900 border border-white/5 rounded text-white text-[10px] focus:outline-none focus:border-primary" />
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[8px] text-zinc-500 uppercase">Título da Obra</label>
+                        <input type="text" id="alt-${item.id}" value="${item.alt}" class="w-full px-3 py-1.5 bg-zinc-900 border border-white/5 rounded text-white text-[10px] focus:outline-none focus:border-primary" />
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="space-y-1">
+                            <label class="text-[8px] text-zinc-500 uppercase">Categoria</label>
+                            <select id="cat-${item.id}" class="w-full px-2 py-1.5 bg-zinc-900 border border-white/5 rounded text-white text-[10px] focus:outline-none focus:border-primary">
+                                ${categoriesList.filter(c => c !== "Todos").map(c => `<option value="${c}" ${c === item.category ? 'selected' : ''}>${c}</option>`).join('')}
+                            </select>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[8px] text-zinc-500 uppercase">Ordem de Exibição</label>
+                            <input type="number" id="ord-${item.id}" value="${item.order || 99}" class="w-full px-3 py-1.5 bg-zinc-900 border border-white/5 rounded text-white text-[10px] focus:outline-none focus:border-primary" />
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[8px] text-zinc-500 uppercase">Descrição da Peça</label>
+                        <textarea id="desc-${item.id}" rows="2" class="w-full px-3 py-1.5 bg-zinc-900 border border-white/5 rounded text-white text-[10px] focus:outline-none focus:border-primary">${item.desc}</textarea>
+                    </div>
+
+                    <button id="save-btn-${item.id}" class="w-full py-1.5 bg-emerald-700/80 hover:bg-emerald-600 rounded text-white text-[9px] font-bold uppercase tracking-widest">
+                        Gravar Foto #${index + 1}
+                    </button>
+                `;
+
+                // Add direct action listeners to prevent string eval bugs
+                itemBox.querySelector(`#del-btn-${item.id}`).addEventListener("click", () => {
+                    actionDeleteGalleryPhoto(item.id);
+                });
+                
+                itemBox.querySelector(`#save-btn-${item.id}`).addEventListener("click", () => {
+                    actionSaveSinglePhotoFields(item.id);
+                });
+
+                list.appendChild(itemBox);
+            });
+
+            lucide.createIcons();
+        }
+
+        async function actionAddNewGalleryPhoto() {
+            if (!adminIsConnectedAuth) return;
+
+            try {
+                const nextOrder = galleryItems.length > 0 ? Math.max(...galleryItems.map(i => i.order || 0)) + 1 : 1;
+                const newDocRef = doc(collection(db, "gallery"));
+                
+                await setDoc(newDocRef, {
+                    id: newDocRef.id,
+                    src: "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80",
+                    alt: "Nova Peça sob Encomenda",
+                    desc: "Descrição curta do display ou móvel.",
+                    category: "Salão de Beleza",
+                    order: nextOrder
+                });
+
+                triggerSystemToast("Nova foto adicionada ao final da lista!", true);
+            } catch (err) {
+                console.error(err);
+                triggerSystemToast("Falha ao adicionar nova foto.", false);
+            }
+        }
+
+        async function actionSaveSinglePhotoFields(id) {
+            if (!adminIsConnectedAuth) return;
+
+            try {
+                const src = document.getElementById(`src-${id}`).value.trim();
+                const alt = document.getElementById(`alt-${id}`).value;
+                const category = document.getElementById(`cat-${id}`).value;
+                const order = parseInt(document.getElementById(`ord-${id}`).value) || 99;
+                const desc = document.getElementById(`desc-${id}`).value;
+
+                const docRef = doc(db, "gallery", id);
+                await updateDoc(docRef, {
+                    src,
+                    alt,
+                    category,
+                    order,
+                    desc
+                });
+
+                triggerSystemToast("Foto gravada com sucesso no Firebase!", true);
+            } catch (err) {
+                console.error(err);
+                triggerSystemToast("Falha ao atualizar foto.", false);
+            }
+        }
+
+        async function actionDeleteGalleryPhoto(id) {
+            if (!adminIsConnectedAuth) return;
+            if (galleryItems.length <= 1) {
+                triggerSystemToast("Mantenha pelo menos uma foto de exibição.", false);
+                return;
+            }
+
+            if (confirm("Deseja realmente apagar esta foto do portfólio permanente?")) {
+                try {
+                    await deleteDoc(doc(db, "gallery", id));
+                    triggerSystemToast("Inclusão removida com sucesso!", true);
+                } catch (err) {
+                    console.error(err);
+                    triggerSystemToast("Falha ao excluir registro.", false);
+                }
+            }
+        }
+
+        // Render customer leads in administrative tab
+        function renderAdminLeadsList() {
+            const container = document.getElementById("admin-leads-list");
+            if (!container) return;
+            container.innerHTML = "";
+
+            if (leads.length === 0) {
+                container.innerHTML = `<p class="text-xs text-zinc-500 italic text-center py-6">Nenhum pedido ou solicitação gravada.</p>`;
+                return;
+            }
+
+            leads.forEach((lead) => {
+                const dateObj = lead.createdAt?.seconds ? new Date(lead.createdAt.seconds * 1000) : new Date();
+                const formattedDate = dateObj.toLocaleDateString("pt-BR") + " " + dateObj.toLocaleTimeString("pt-BR", { hour: '2-digit', minute: '2-digit' });
+
+                const cardLeads = document.createElement("div");
+                cardLeads.className = `p-4 border rounded-xl space-y-2 relative transition-all ${lead.status === "atendido" ? 'bg-zinc-950/20 border-zinc-900 opacity-60' : 'bg-zinc-900/60 border-primary/20'}`;
+
+                cardLeads.innerHTML = `
+                    <div class="flex justify-between items-start gap-2">
+                        <div>
+                            <h5 class="text-white font-bold text-xs font-serif leading-none">${lead.name}</h5>
+                            <span class="text-[9px] text-zinc-500 block mt-1">${formattedDate}</span>
+                        </div>
+                        <span class="px-2 py-0.5 rounded text-[8px] font-black uppercase tracking-widest ${lead.status === 'atendido' ? 'bg-zinc-805/40 text-zinc-500 border border-zinc-800' : 'bg-primary/20 text-primary border border-primary/30'}">
+                            ${lead.status === 'atendido' ? 'Atendido' : 'Novo Pedido'}
+                        </span>
+                    </div>
+
+                    <p class="text-zinc-300 text-[11px] leading-relaxed italic bg-zinc-950/40 p-2.5 rounded-lg border border-white/5">
+                        <strong class="text-primary not-italic block mb-0.5">${lead.furnitureType}</strong>
+                        "${lead.description}"
+                    </p>
+
+                    <div class="text-[9px] text-zinc-400 font-mono space-y-0.5">
+                        <p>📞 Celular: ${lead.phone}</p>
+                        <p>📧 E-mail: ${lead.email}</p>
+                    </div>
+
+                    <div class="pt-2 border-t border-white/5 flex gap-2 justify-end">
+                        <button id="toggle-status-${lead.id}" class="px-2 py-1 rounded text-[8px] font-bold uppercase border hover:bg-white/5 transition-colors ${lead.status === 'atendido' ? 'border-zinc-700 text-zinc-400' : 'border-emerald-600/30 text-emerald-400 bg-emerald-500/5'}">
+                            ${lead.status === 'atendido' ? 'Reabrir' : 'Arquivar'}
+                        </button>
+                        <button id="del-lead-${lead.id}" class="px-2 py-1 rounded text-[8px] font-bold uppercase border border-red-900/40 text-red-400 hover:bg-red-500/15 transition-colors">
+                            Excluir
+                        </button>
+                    </div>
+                `;
+
+                // Non-inline event bindings
+                cardLeads.querySelector(`#toggle-status-${lead.id}`).addEventListener("click", () => {
+                    actionToggleLead(lead.id, lead.status);
+                });
+                cardLeads.querySelector(`#del-lead-${lead.id}`).addEventListener("click", () => {
+                    actionDeleteLead(lead.id);
+                });
+
+                container.appendChild(cardLeads);
+            });
+
+            lucide.createIcons();
+        }
+
+        async function actionToggleLead(id, currentStatus) {
+            if (!adminIsConnectedAuth) return;
+
+            try {
+                const newStatus = currentStatus === "novo" ? "atendido" : "novo";
+                await updateDoc(doc(db, "leads", id), { status: newStatus });
+                triggerSystemToast("Status alterado com sucesso!", true);
+            } catch (err) {
+                console.error(err);
+                triggerSystemToast("Falha ao alterar arquivamento.", false);
+            }
+        }
+
+        async function actionDeleteLead(id) {
+            if (!adminIsConnectedAuth) return;
+
+            if (confirm("Deseja deletar esta mensagem definitivamente da nuvem?")) {
+                try {
+                    await deleteDoc(doc(db, "leads", id));
+                    triggerSystemToast("Mensagem excluída.", true);
+                } catch (err) {
+                    console.error(err);
+                    triggerSystemToast("Falha ao apagar do banco de dados.", false);
+                }
+            }
+        }
+
+        // Expose global controller actions to trigger from plain HTML inline attributes
+        window.openAdminControlPanel = openAdminControlPanel;
+        window.closeAdminControlPanel = closeAdminControlPanel;
+        window.verifyAdminCredentials = verifyAdminCredentials;
+        window.showAdminTab = showAdminTab;
+        window.actionSaveGeneralConfig = actionSaveGeneralConfig;
+        window.actionSavePromoConfig = actionSavePromoConfig;
+        window.actionAddNewGalleryPhoto = actionAddNewGalleryPhoto;
+        
+        window.closeLightboxModal = closeLightboxModal;
+        window.navigateLightboxImage = navigateLightboxImage;
+
+        window.toggleMobileNavbarDropdown = () => {
+            const panel = document.getElementById("mobile-nav-panel");
+            const icon = document.getElementById("menu-btn-icon");
+            const open = panel.classList.contains("hidden");
+
+            if (open) {
+                panel.classList.remove("hidden");
+                icon.setAttribute("data-lucide", "x");
+            } else {
+                panel.classList.add("hidden");
+                icon.setAttribute("data-lucide", "menu");
+            }
+            lucide.createIcons();
+        };
+
+        window.handleLeadFormSubmission = handleLeadFormSubmission;
+
+        // Startup functions
+        renderCategoriesFilterRow();
+    </script>
+</body>
+</html>
