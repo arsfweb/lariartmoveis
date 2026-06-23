@@ -102,31 +102,29 @@
 </head>
 <body class="selection:bg-primary selection:text-white">
 
-    <!-- 1. CINEMATIC LOADER SCREEN (LOGO HIGHLIGHTED ACCORDING TO INSTRUCTIONS) -->
+    <!-- 1. CINEMATIC LOADER SCREEN -->
     <div id="welcome-loader" class="fixed inset-0 bg-[#0B0B0B] z-[100000] flex flex-col justify-center items-center px-6 transition-all duration-700">
         <div class="flex flex-col items-center max-w-sm w-full text-center">
             
-            <!-- Highly Highlighted Premium Logo Frame -->
+            <!-- Highlighted Premium Logo Frame -->
             <div class="relative mb-6 animate-pulse">
                 <div class="absolute -inset-2 rounded-full bg-gradient-to-tr from-primary/60 to-red-400/40 blur-xl opacity-80"></div>
                 <div class="relative w-32 h-32 bg-stone-900 border-2 border-primary/40 rounded-full flex items-center justify-center overflow-hidden shadow-2xl p-3">
                     <img 
                         src="logo.png" 
                         alt="LariArt Logo" 
-                        className="w-full h-full object-contain"
+                        class="w-full h-full object-contain"
                         id="loader-img-logo"
                         onerror="this.style.display='none'; document.getElementById('loader-txt-fallback').classList.remove('hidden')"
                     />
-                    <!-- Elegant visual text back-up if client misses logo.png on root -->
                     <div id="loader-txt-fallback" class="hidden font-serif text-primary text-6xl font-extrabold select-none">LA</div>
                 </div>
             </div>
 
             <h2 class="font-serif text-3xl font-extrabold uppercase tracking-widest text-white mb-2">LariArt</h2>
             <div class="w-12 h-1 bg-primary rounded mb-2"></div>
-            <p class="text-[10px] text-zinc-400 tracking-widest uppercase mb-10">Móveis sob Encomenda & Decorações</p>
+            <p class="text-[10px] text-zinc-404 tracking-widest uppercase mb-10">Móveis sob Encomenda & Decorações</p>
             
-            <!-- Static Elegant Loading Bar -->
             <div class="w-48 bg-zinc-800 h-1.5 rounded-full overflow-hidden border border-white/5">
                 <div id="loader-progress-bar" class="bg-primary h-full rounded-full transition-all duration-300" style="width: 0%"></div>
             </div>
@@ -137,7 +135,6 @@
     <!-- 2. REAL-TIME MULTI-FUNCTIONAL TOAST -->
     <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-zinc-900 border border-primary/20 p-4 rounded-2xl shadow-2xl z-[120000] opacity-0 pointer-events-none transition-all duration-300 w-[90%] max-w-md flex items-center gap-3">
         <div id="toast-icon-wrapper" class="w-10 h-10 rounded-full flex items-center justify-center shrink-0">
-            <!-- Icon replaced programmatically -->
             <i id="toast-icon" data-lucide="info" class="w-5 h-5"></i>
         </div>
         <div class="flex-1 text-xs sm:text-sm font-semibold text-white" id="toast-text">
@@ -149,7 +146,7 @@
     <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-[5000] transition-all duration-300 py-5">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
             
-            <!-- Logo Section with highlighted elements -->
+            <!-- Logo Section -->
             <a href="#inicio" class="flex items-center gap-3 group">
                 <div class="relative">
                     <div class="absolute -inset-1 rounded-xl bg-gradient-to-tr from-primary to-orange-400 blur-sm opacity-40 group-hover:opacity-100 transition duration-300"></div>
@@ -227,7 +224,7 @@
         <div class="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-8">
             <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
                 <i data-lucide="sparkles" class="w-4 h-4 text-primary animate-pulse"></i>
-                Transforme seu espaço de trabalho com móveis que unem designe e funcionalidade
+                Mobiliário Comercial 100% sob Encomenda (Não Planejado)
             </div>
 
             <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
@@ -281,7 +278,7 @@
                     </h2>
                     
                     <p id="promo-desc" class="text-zinc-350 text-sm md:text-base leading-relaxed">
-                        Feche o projeto completo de móveis de seu estabelecimento comercial com a LariArt e ganhe um excelente carrinho auxiliar triplo reforçado ou espelho camarim para otimizar suas vendas.
+                        Feche seu projeto comercial completo esse mês e ganhe um Carrinho Auxiliar reforçado em MDF premium sob medida sem custos adicionais. Otimize o fluxo do seu espaço!
                     </p>
 
                     <div class="inline-flex items-center gap-4 bg-zinc-900/60 border border-white/5 p-4 rounded-2xl">
@@ -342,16 +339,16 @@
         </div>
     </section>
 
-    <!-- 7. PORTFOLIO GALLERY (COMPLETELY COMPLYING WITH CATEGORIES INSTRUCTIONS - KITCHENS/WARDROBES REMOVED) -->
+    <!-- 7. PORTFOLIO GALLERY -->
     <section id="projetos" class="py-24 bg-[#0B0B0B]">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
             
             <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
                 <span class="text-primary text-xs uppercase tracking-widest font-black">Design Exclusivo sob Encomenda</span>
                 <h2 class="font-serif text-3xl sm:text-5xl font-black text-white leading-none">
-                    Móveis Corporativos <span class="text-primary">LariArt</span>
+                    Móveis sob medida <span class="text-primary">Lari Art</span>
                 </h2>
-                <p class="text-zinc-400 text-xs sm:text-sm">
+                <p class="text-zinc-404 text-xs sm:text-sm">
                     Diferente de planejados limitados, nossos móveis sob encomenda são recortados e montados atendendo a milímetro de ergonomia de salão, manicure, barbearia, escritório e comércio geral.
                 </p>
             </div>
@@ -361,9 +358,9 @@
                 <!-- Programmatically generated categories to prevent typos -->
             </div>
 
-            <!-- Dynamic Grid (Showing photo with readable description card directly below) -->
+            <!-- Dynamic Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10" id="gallery-grid-container">
-                <!-- Populated dynamically from Firebase or standard fallback library -->
+                <!-- Populated dynamically from Firebase -->
             </div>
         </div>
     </section>
@@ -464,6 +461,10 @@
                             >
                                 <option value="Salão de Beleza">Salão de Beleza / Estética</option>
                                 <option value="Manicure">Manicure / Podologia</option>
+                                <option value="Nails Designer">Nails Designer</option>
+                                <option value="Recepção">Recepção</option>
+                                <option value="Balcões">Balcões</option>
+                                <option value="Nichos">Nichos</option>
                                 <option value="Escritórios">Escritório Particular / Co-working</option>
                                 <option value="Barbearias">Barbearia / Cabelaria Masculina</option>
                                 <option value="Tabacarias">Tabacaria / Lounge de Lazer</option>
@@ -536,7 +537,7 @@
                         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                     </a>
                 </div>
-                <p class="text-[10px] text-zinc-500">Desenvolvido com tecnologia de armazenamento em tempo real integrada.</p>
+                <p class="text-[10px] text-zinc-500">Desenvolvimento de móveis sob encomenda com painel integrado em tempo real.</p>
             </div>
         </div>
 
@@ -573,7 +574,7 @@
     </div>
 
     <!-- ========================================================================================= -->
-    <!-- REAL-TIME ADMINISTRATOR CONTROL PANEL (CMS CONNECTED OVER FIREBASE VIA CDN FOR PORTABILITY) -->
+    <!-- REAL-TIME ADMINISTRATOR CONTROL PANEL -->
     <!-- ========================================================================================= -->
     <div id="admin-panel" class="fixed inset-y-0 right-0 w-full max-w-lg bg-zinc-900 border-l border-white/10 z-[30000] shadow-2xl translate-x-full transition-transform duration-500 flex flex-col">
         <!-- Panel Header -->
@@ -744,7 +745,6 @@
     </div>
 
     <!-- SDK FIREBASE INTEGRADO VIA CDN PARA HTML ÚNICO AUTO-SUFICIENTE -->
-    <!-- Utilizando a versão compatível com módulo para conexões reais em tempo real sem bundling -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { 
@@ -786,6 +786,10 @@
             "Todos", 
             "Salão de Beleza", 
             "Manicure", 
+            "Nails Designer",
+            "Recepção",
+            "Balcões",
+            "Nichos",
             "Escritórios", 
             "Barbearias", 
             "Tabacarias", 
@@ -799,8 +803,10 @@
         const progressInterval = setInterval(() => {
             loadPercent += 10;
             if (loadPercent <= 100) {
-                document.getElementById('loader-progress-bar').style.width = loadPercent + '%';
-                document.getElementById('loader-progress-val').innerText = loadPercent + '% carregando';
+                const bar = document.getElementById('loader-progress-bar');
+                if (bar) bar.style.width = loadPercent + '%';
+                const val = document.getElementById('loader-progress-val');
+                if (val) val.innerText = loadPercent + '% carregando';
             }
             if (loadPercent >= 100) {
                 clearInterval(progressInterval);
@@ -821,21 +827,23 @@
             const iconWrapper = document.getElementById("toast-icon-wrapper");
             const textElement = document.getElementById("toast-text");
             
-            textElement.innerText = message;
+            if (textElement) textElement.innerText = message;
             
-            if (isSuccess) {
-                iconWrapper.className = "w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-emerald-500/10 text-emerald-400";
-                iconWrapper.innerHTML = `<i data-lucide="check" class="w-5 h-5"></i>`;
-            } else {
-                iconWrapper.className = "w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-red-500/10 text-primary";
-                iconWrapper.innerHTML = `<i data-lucide="info" class="w-5 h-5"></i>`;
+            if (iconWrapper) {
+                if (isSuccess) {
+                    iconWrapper.className = "w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-emerald-500/10 text-emerald-400";
+                    iconWrapper.innerHTML = `<i data-lucide="check" class="w-5 h-5"></i>`;
+                } else {
+                    iconWrapper.className = "w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-red-500/10 text-primary";
+                    iconWrapper.innerHTML = `<i data-lucide="info" class="w-5 h-5"></i>`;
+                }
             }
             
             lucide.createIcons();
-            toastElement.classList.add("toast-active");
+            if (toastElement) toastElement.classList.add("toast-active");
             
             setTimeout(() => {
-                toastElement.classList.remove("toast-active");
+                if (toastElement) toastElement.classList.remove("toast-active");
             }, 4000);
         }
 
@@ -844,6 +852,11 @@
         onSnapshot(configDocRef, (snapshot) => {
             if (snapshot.exists()) {
                 siteConfig = snapshot.data();
+                // Auto-update to new heroDesc if it is still using the old default or is empty
+                if (siteConfig.heroDesc === "Desenvolvemos displays, bancadas, carrinhos e móveis premium exclusivos sob medida para dar vida ao seu negócio." || !siteConfig.heroDesc) {
+                    siteConfig.heroDesc = "Desenvolvemos displays, bancadas, carrinhos auxiliares e penteadeiras premium de alta densidade sob medida para dar o destaque que seu salão de beleza, barbearia ou escritório merece.";
+                    updateDoc(configDocRef, { heroDesc: siteConfig.heroDesc }).catch(console.error);
+                }
                 applyDownloadedConfigs();
             }
         });
@@ -855,7 +868,6 @@
             snapshot.forEach((doc) => {
                 items.push(doc.data());
             });
-            // Sort ascending by order
             items.sort((a, b) => (a.order || 0) - (b.order || 0));
             galleryItems = items;
             renderDynamicGallery();
@@ -869,7 +881,6 @@
             snapshot.forEach((doc) => {
                 list.push({ ...doc.data(), id: doc.id });
             });
-            // Sort by createdAt descending
             list.sort((a, b) => {
                 const secA = a.createdAt?.seconds || 0;
                 const secB = b.createdAt?.seconds || 0;
@@ -883,50 +894,72 @@
         function applyDownloadedConfigs() {
             if (!siteConfig) return;
 
-            document.getElementById("hero-bg-img").src = siteConfig.heroBg;
-            document.getElementById("hero-title-1").innerText = siteConfig.heroT1;
-            document.getElementById("hero-title-2").innerText = siteConfig.heroT2;
-            document.getElementById("hero-title-3").innerText = siteConfig.heroT3;
-            document.getElementById("hero-description").innerText = siteConfig.heroDesc;
-            document.getElementById("hero-cta-link").href = "#contato";
+            const safeSetSrc = (id, src) => { const el = document.getElementById(id); if (el) el.src = src; };
+            const safeSetText = (id, txt) => { const el = document.getElementById(id); if (el) el.innerText = txt; };
+            const safeSetHTML = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+            const safeSetHref = (id, href) => { const el = document.getElementById(id); if (el) el.href = href; };
+            const safeSetVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+            const safeSetChecked = (id, chk) => { const el = document.getElementById(id); if (el) el.checked = chk; };
+            const safeToggleClass = (id, className, forceAdd) => {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (forceAdd) {
+                        el.classList.add(className);
+                    } else {
+                        el.classList.remove(className);
+                    }
+                }
+            };
 
-            document.getElementById("footer-contact-num").innerText = `+${siteConfig.whatsapp.substring(0,2)} (${siteConfig.whatsapp.substring(2,4)}) ${siteConfig.whatsapp.substring(4,9)}-${siteConfig.whatsapp.substring(9)}`;
+            safeSetSrc("hero-bg-img", siteConfig.heroBg);
+            safeSetText("hero-title-1", siteConfig.heroT1);
+            safeSetText("hero-title-2", siteConfig.heroT2);
+            safeSetText("hero-title-3", siteConfig.heroT3);
+            safeSetText("hero-description", siteConfig.heroDesc);
+            safeSetHref("hero-cta-link", "#contato");
+
+            if (siteConfig.whatsapp) {
+                const numStr = `+${siteConfig.whatsapp.substring(0,2)} (${siteConfig.whatsapp.substring(2,4)}) ${siteConfig.whatsapp.substring(4,9)}-${siteConfig.whatsapp.substring(9)}`;
+                safeSetText("footer-contact-num", numStr);
+            }
 
             if (siteConfig.promoActive) {
-                document.getElementById("promocoes").classList.remove("hidden");
-                document.getElementById("nav-promo-tab").classList.remove("hidden");
-                document.getElementById("e-promo-tab").classList.remove("hidden");
+                safeToggleClass("promocoes", "hidden", false);
+                safeToggleClass("nav-promo-tab", "hidden", false);
+                safeToggleClass("mobile-promo-tab", "hidden", false);
                 
-                document.getElementById("promo-badge").innerHTML = `<i data-lucide="gift" class="w-4 h-4"></i> ${siteConfig.promoTag}`;
-                document.getElementById("promo-title").innerText = siteConfig.promoTitle;
-                document.getElementById("promo-desc").innerText = siteConfig.promoDesc;
-                document.getElementById("promo-accent").innerText = siteConfig.promoAccent;
-                document.getElementById("promo-preview-image").src = siteConfig.promoImg;
-                document.getElementById("promo-banner-bg").style.backgroundImage = `url(${siteConfig.promoImg})`;
+                safeSetHTML("promo-badge", `<i data-lucide="gift" class="w-4 h-4"></i> ${siteConfig.promoTag}`);
+                safeSetText("promo-title", siteConfig.promoTitle);
+                safeSetText("promo-desc", siteConfig.promoDesc);
+                safeSetText("promo-accent", siteConfig.promoAccent);
+                safeSetSrc("promo-preview-image", siteConfig.promoImg);
+                
+                const promoBgEl = document.getElementById("promo-banner-bg");
+                if (promoBgEl) promoBgEl.style.backgroundImage = `url(${siteConfig.promoImg})`;
                 
                 const promoWa = `https://wa.me/${siteConfig.whatsapp}?text=${encodeURIComponent(`Olá, LariArt! Me interessei pela promoção "${siteConfig.promoTitle}"!`)}`;
-                document.getElementById("promo-whatsapp-link").href = promoWa;
+                safeSetHref("promo-whatsapp-link", promoWa);
             } else {
-                document.getElementById("promocoes").classList.add("hidden");
-                document.getElementById("nav-promo-tab").classList.add("hidden");
-                document.getElementById("e-promo-tab").classList.add("hidden");
+                safeToggleClass("promocoes", "hidden", true);
+                safeToggleClass("nav-promo-tab", "hidden", true);
+                safeToggleClass("mobile-promo-tab", "hidden", true);
             }
 
             // Fill admin panel inputs with loaded database configs
-            document.getElementById("admin-cfg-whatsapp").value = siteConfig.whatsapp;
-            document.getElementById("admin-cfg-whatsapp-msg").value = siteConfig.whatsappMsg;
-            document.getElementById("admin-cfg-hero-bg").value = siteConfig.heroBg;
-            document.getElementById("admin-cfg-hero-t1").value = siteConfig.heroT1;
-            document.getElementById("admin-cfg-hero-t2").value = siteConfig.heroT2;
-            document.getElementById("admin-cfg-hero-t3").value = siteConfig.heroT3;
-            document.getElementById("admin-cfg-hero-desc").value = siteConfig.heroDesc;
+            safeSetVal("admin-cfg-whatsapp", siteConfig.whatsapp);
+            safeSetVal("admin-cfg-whatsapp-msg", siteConfig.whatsappMsg);
+            safeSetVal("admin-cfg-hero-bg", siteConfig.heroBg);
+            safeSetVal("admin-cfg-hero-t1", siteConfig.heroT1);
+            safeSetVal("admin-cfg-hero-t2", siteConfig.heroT2);
+            safeSetVal("admin-cfg-hero-t3", siteConfig.heroT3);
+            safeSetVal("admin-cfg-hero-desc", siteConfig.heroDesc);
 
-            document.getElementById("admin-cfg-promo-chk").checked = siteConfig.promoActive;
-            document.getElementById("admin-cfg-promo-tag").value = siteConfig.promoTag;
-            document.getElementById("admin-cfg-promo-title").value = siteConfig.promoTitle;
-            document.getElementById("admin-cfg-promo-accent").value = siteConfig.promoAccent;
-            document.getElementById("admin-cfg-promo-img").value = siteConfig.promoImg;
-            document.getElementById("admin-cfg-promo-desc").value = siteConfig.promoDesc;
+            safeSetChecked("admin-cfg-promo-chk", siteConfig.promoActive);
+            safeSetVal("admin-cfg-promo-tag", siteConfig.promoTag);
+            safeSetVal("admin-cfg-promo-title", siteConfig.promoTitle);
+            safeSetVal("admin-cfg-promo-accent", siteConfig.promoAccent);
+            safeSetVal("admin-cfg-promo-img", siteConfig.promoImg);
+            safeSetVal("admin-cfg-promo-desc", siteConfig.promoDesc);
 
             lucide.createIcons();
         }
@@ -975,7 +1008,7 @@
                                 <span class="text-[9px] text-zinc-500 font-mono">#${item.order}</span>
                             </div>
                             <h3 class="font-serif text-lg font-bold text-white group-hover:text-primary transition-colors leading-snug">${item.alt}</h3>
-                            <p class="text-zinc-400 text-xs mt-2 leading-relaxed">${item.desc}</p>
+                            <p class="text-zinc-404 text-xs mt-2 leading-relaxed">${item.desc}</p>
                         </div>
                         
                         <div class="mt-4 pt-3 border-t border-white/5 flex justify-between items-center text-[10px] sm:text-[11px] font-bold uppercase tracking-widest">
@@ -993,10 +1026,12 @@
                     </div>
                 `;
 
-                // Add click listener direct to image container
-                card.querySelector(`#card-${item.id}`).addEventListener('click', () => {
-                    openLightboxSlider(actualIndex);
-                });
+                const clickTarget = card.querySelector(`#card-${item.id}`);
+                if (clickTarget) {
+                    clickTarget.addEventListener('click', () => {
+                        openLightboxSlider(actualIndex);
+                    });
+                }
 
                 container.appendChild(card);
             });
@@ -1029,23 +1064,29 @@
             });
         }
 
-        // Lightbox detailed slider actions
+        // Lightbox actions
         function openLightboxSlider(index) {
             if (index < 0 || index >= galleryItems.length) return;
             lightboxCurrentIdx = index;
             
             const item = galleryItems[index];
-            document.getElementById("lightbox-main-img").src = item.src;
-            document.getElementById("lightbox-category").innerText = item.category;
-            document.getElementById("lightbox-title").innerText = item.alt;
-            document.getElementById("lightbox-desc").innerText = item.desc;
+            const imgEl = document.getElementById("lightbox-main-img");
+            if (imgEl) imgEl.src = item.src;
+            const catEl = document.getElementById("lightbox-category");
+            if (catEl) catEl.innerText = item.category;
+            const titleEl = document.getElementById("lightbox-title");
+            if (titleEl) titleEl.innerText = item.alt;
+            const descEl = document.getElementById("lightbox-desc");
+            if (descEl) descEl.innerText = item.desc;
 
-            document.getElementById("lightbox").classList.remove("hidden");
+            const box = document.getElementById("lightbox");
+            if (box) box.classList.remove("hidden");
             document.body.style.overflow = "hidden";
         }
 
         function closeLightboxModal() {
-            document.getElementById("lightbox").classList.add("hidden");
+            const box = document.getElementById("lightbox");
+            if (box) box.classList.add("hidden");
             document.body.style.overflow = "auto";
         }
 
@@ -1059,25 +1100,33 @@
         // Navbar Scroll behavior
         window.addEventListener("scroll", () => {
             const navbar = document.getElementById("main-navbar");
-            if (window.scrollY > 50) {
-                navbar.classList.add("glass-nav");
-                navbar.classList.add("py-3.5");
-                navbar.classList.remove("py-5");
-            } else {
-                navbar.classList.remove("glass-nav");
-                navbar.classList.remove("py-3.5");
-                navbar.classList.add("py-5");
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.add("glass-nav");
+                    navbar.classList.add("py-3.5");
+                    navbar.classList.remove("py-5");
+                } else {
+                    navbar.classList.remove("glass-nav");
+                    navbar.classList.remove("py-3.5");
+                    navbar.classList.add("py-5");
+                }
             }
         });
 
         // Contact lead form handler
         async function handleLeadFormSubmission(e) {
             e.preventDefault();
-            const name = document.getElementById("form-name").value.trim();
-            const phone = document.getElementById("form-phone").value.trim();
-            const email = document.getElementById("form-email").value.trim();
-            const type = document.getElementById("form-type").value;
-            const desc = document.getElementById("form-desc").value.trim();
+            const nameEl = document.getElementById("form-name");
+            const phoneEl = document.getElementById("form-phone");
+            const emailEl = document.getElementById("form-email");
+            const typeEl = document.getElementById("form-type");
+            const descEl = document.getElementById("form-desc");
+
+            const name = nameEl ? nameEl.value.trim() : "";
+            const phone = phoneEl ? phoneEl.value.trim() : "";
+            const email = emailEl ? emailEl.value.trim() : "";
+            const type = typeEl ? typeEl.value : "";
+            const desc = descEl ? descEl.value.trim() : "";
 
             if (!name || !phone || !desc) {
                 triggerSystemToast("Por favor, preencha nome, celular e a descrição.", false);
@@ -1085,11 +1134,12 @@
             }
 
             const btn = document.getElementById("form-submit-btn");
-            btn.disabled = true;
-            btn.innerText = "Gravando pedido...";
+            if (btn) {
+                btn.disabled = true;
+                btn.innerText = "Gravando pedido...";
+            }
 
             try {
-                // Submit lead to Firebase Real-time
                 await addDoc(collection(db, "leads"), {
                     name,
                     phone,
@@ -1102,13 +1152,13 @@
 
                 triggerSystemToast("Pedido gravado na base de dados LariArt!", true);
 
-                // Open WhatsApp immediately with detailed message
                 const destValDefault = siteConfig?.whatsapp || "5547996443619";
                 const textVal = `Olá, LariArt! Me chamo *${name}*.\n\n*Solicitação de Móvel sob Encomenda!*\n\n• *Tipo de Móvel:* ${type}\n• *Celular:* ${phone}\n• *E-mail:* ${email || 'Não informado'}\n\n*Especificação Desejada:*\n${desc}\n\n_Enviado em tempo real pelo site LariArt_`;
                 
                 const waRedirection = `https://wa.me/${destValDefault}?text=${encodeURIComponent(textVal)}`;
                 
-                document.getElementById("lead-form").reset();
+                const form = document.getElementById("lead-form");
+                if (form) form.reset();
                 setTimeout(() => {
                     window.open(waRedirection, "_blank");
                 }, 1000);
@@ -1117,33 +1167,38 @@
                 console.error(err);
                 triggerSystemToast("Erro na gravação. Envie diretamente pelo ícone do WhatsApp.", false);
             } finally {
-                btn.disabled = false;
-                btn.innerText = "Gravar Pedido e Falar no WhatsApp";
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerText = "Gravar Pedido e Falar no WhatsApp";
+                }
                 lucide.createIcons();
             }
         }
 
-        // ==============================================================================
-        // CORE INTEGRATED BACKSPACE LARIART CMS CHANNELS
-        // ==============================================================================
+        // ADMINISTRATOR CMS CHANNELS
         let adminIsConnectedAuth = false;
 
         function openAdminControlPanel() {
-            document.getElementById("admin-panel").classList.remove("translate-x-full");
-            document.getElementById("admin-password-field").focus();
+            const panel = document.getElementById("admin-panel");
+            if (panel) panel.classList.remove("translate-x-full");
+            const passField = document.getElementById("admin-password-field");
+            if (passField) passField.focus();
         }
 
         function closeAdminControlPanel() {
-            document.getElementById("admin-panel").classList.add("translate-x-full");
+            const panel = document.getElementById("admin-panel");
+            if (panel) panel.classList.add("translate-x-full");
         }
 
-        // Hardcoded admin key changed programmatically according to prompt instruction: adminlariart123
         function verifyAdminCredentials() {
-            const pasVal = document.getElementById("admin-password-field").value;
+            const pasField = document.getElementById("admin-password-field");
+            const pasVal = pasField ? pasField.value : "";
             if (pasVal === "adminlariart123") {
                 adminIsConnectedAuth = true;
-                document.getElementById("admin-auth-screen").classList.add("hidden");
-                document.getElementById("admin-workspace").classList.remove("hidden");
+                const authScreen = document.getElementById("admin-auth-screen");
+                if (authScreen) authScreen.classList.add("hidden");
+                const workspace = document.getElementById("admin-workspace");
+                if (workspace) workspace.classList.remove("hidden");
                 triggerSystemToast("Chave Administrativa confirmada!", true);
                 applyDownloadedConfigs();
             } else {
@@ -1152,20 +1207,24 @@
         }
 
         function showAdminTab(tabName) {
-            // Unselect previous
-            document.getElementById("tab-geral-btn").className = "flex-1 py-4 font-bold uppercase tracking-widest text-center text-zinc-400 border-b-2 border-transparent hover:bg-white/5 transition-all";
-            document.getElementById("tab-promocoes-btn").className = "flex-1 py-4 font-bold uppercase tracking-widest text-center text-zinc-400 border-b-2 border-transparent hover:bg-white/5 transition-all";
-            document.getElementById("tab-fotos-btn").className = "flex-1 py-4 font-bold uppercase tracking-widest text-center text-zinc-400 border-b-2 border-transparent hover:bg-white/5 transition-all";
-            document.getElementById("tab-pedidos-btn").className = "flex-1 py-4 font-bold uppercase tracking-widest text-center text-zinc-400 border-b-2 border-transparent hover:bg-white/5 transition-all";
+            const safeSetClass = (id, className) => { const el = document.getElementById(id); if (el) el.className = className; };
+            const safeAddClass = (id, className) => { const el = document.getElementById(id); if (el) el.classList.add(className); };
+            const safeRemoveClass = (id, className) => { const el = document.getElementById(id); if (el) el.classList.remove(className); };
 
-            document.getElementById(`tab-${tabName}-btn`).className = "flex-1 py-4 font-bold uppercase tracking-widest text-center text-primary border-b-2 border-primary hover:bg-white/5 transition-all";
+            const unselectedStyle = "flex-1 py-4 font-bold uppercase tracking-widest text-center text-zinc-400 border-b-2 border-transparent hover:bg-white/5 transition-all";
+            safeSetClass("tab-geral-btn", unselectedStyle);
+            safeSetClass("tab-promocoes-btn", unselectedStyle);
+            safeSetClass("tab-fotos-btn", unselectedStyle);
+            safeSetClass("tab-pedidos-btn", unselectedStyle);
 
-            document.getElementById("cms-tab-geral").classList.add("hidden");
-            document.getElementById("cms-tab-promocoes").classList.add("hidden");
-            document.getElementById("cms-tab-fotos").classList.add("hidden");
-            document.getElementById("cms-tab-pedidos").classList.add("hidden");
+            safeSetClass(`tab-${tabName}-btn`, "flex-1 py-4 font-bold uppercase tracking-widest text-center text-primary border-b-2 border-primary hover:bg-white/5 transition-all");
 
-            document.getElementById(`cms-tab-${tabName}`).classList.remove("hidden");
+            safeAddClass("cms-tab-geral", "hidden");
+            safeAddClass("cms-tab-promocoes", "hidden");
+            safeAddClass("cms-tab-fotos", "hidden");
+            safeAddClass("cms-tab-pedidos", "hidden");
+
+            safeRemoveClass(`cms-tab-${tabName}`, "hidden");
         }
 
         // CMS SAVE ACTIONS
@@ -1173,13 +1232,16 @@
             if (!adminIsConnectedAuth) return;
             
             try {
-                const whatsapp = document.getElementById("admin-cfg-whatsapp").value.trim();
-                const whatsappMsg = document.getElementById("admin-cfg-whatsapp-msg").value;
-                const heroBg = document.getElementById("admin-cfg-hero-bg").value.trim();
-                const heroT1 = document.getElementById("admin-cfg-hero-t1").value;
-                const heroT2 = document.getElementById("admin-cfg-hero-t2").value;
-                const heroT3 = document.getElementById("admin-cfg-hero-t3").value;
-                const heroDesc = document.getElementById("admin-cfg-hero-desc").value;
+                const getVal = (id) => { const el = document.getElementById(id); return el ? el.value.trim() : ""; };
+                const getValRaw = (id) => { const el = document.getElementById(id); return el ? el.value : ""; };
+
+                const whatsapp = getVal("admin-cfg-whatsapp");
+                const whatsappMsg = getValRaw("admin-cfg-whatsapp-msg");
+                const heroBg = getVal("admin-cfg-hero-bg");
+                const heroT1 = getValRaw("admin-cfg-hero-t1");
+                const heroT2 = getValRaw("admin-cfg-hero-t2");
+                const heroT3 = getValRaw("admin-cfg-hero-t3");
+                const heroDesc = getValRaw("admin-cfg-hero-desc");
 
                 await updateDoc(configDocRef, {
                     whatsapp,
@@ -1202,12 +1264,17 @@
             if (!adminIsConnectedAuth) return;
 
             try {
-                const active = document.getElementById("admin-cfg-promo-chk").checked;
-                const tag = document.getElementById("admin-cfg-promo-tag").value;
-                const title = document.getElementById("admin-cfg-promo-title").value;
-                const accent = document.getElementById("admin-cfg-promo-accent").value;
-                const img = document.getElementById("admin-cfg-promo-img").value.trim();
-                const desc = document.getElementById("admin-cfg-promo-desc").value;
+                const chk = document.getElementById("admin-cfg-promo-chk");
+                const active = chk ? chk.checked : false;
+                
+                const getVal = (id) => { const el = document.getElementById(id); return el ? el.value : ""; };
+                const getValTrim = (id) => { const el = document.getElementById(id); return el ? el.value.trim() : ""; };
+
+                const tag = getVal("admin-cfg-promo-tag");
+                const title = getVal("admin-cfg-promo-title");
+                const accent = getVal("admin-cfg-promo-accent");
+                const img = getValTrim("admin-cfg-promo-img");
+                const desc = getVal("admin-cfg-promo-desc");
 
                 await updateDoc(configDocRef, {
                     promoActive: active,
@@ -1225,7 +1292,7 @@
             }
         }
 
-        // Render editable gallery list on the admin workspace
+        // Render editable gallery list
         function renderAdminGalleryList() {
             const list = document.getElementById("admin-gallery-input-list");
             if (!list) return;
@@ -1278,14 +1345,19 @@
                     </button>
                 `;
 
-                // Add direct action listeners to prevent string eval bugs
-                itemBox.querySelector(`#del-btn-${item.id}`).addEventListener("click", () => {
-                    actionDeleteGalleryPhoto(item.id);
-                });
+                const delBtn = itemBox.querySelector(`#del-btn-${item.id}`);
+                if (delBtn) {
+                    delBtn.addEventListener("click", () => {
+                        actionDeleteGalleryPhoto(item.id);
+                    });
+                }
                 
-                itemBox.querySelector(`#save-btn-${item.id}`).addEventListener("click", () => {
-                    actionSaveSinglePhotoFields(item.id);
-                });
+                const saveBtn = itemBox.querySelector(`#save-btn-${item.id}`);
+                if (saveBtn) {
+                    saveBtn.addEventListener("click", () => {
+                        actionSaveSinglePhotoFields(item.id);
+                    });
+                }
 
                 list.appendChild(itemBox);
             });
@@ -1320,11 +1392,14 @@
             if (!adminIsConnectedAuth) return;
 
             try {
-                const src = document.getElementById(`src-${id}`).value.trim();
-                const alt = document.getElementById(`alt-${id}`).value;
-                const category = document.getElementById(`cat-${id}`).value;
-                const order = parseInt(document.getElementById(`ord-${id}`).value) || 99;
-                const desc = document.getElementById(`desc-${id}`).value;
+                const getVal = (elemId) => { const el = document.getElementById(elemId); return el ? el.value : ""; };
+                const getValTrim = (elemId) => { const el = document.getElementById(elemId); return el ? el.value.trim() : ""; };
+
+                const src = getValTrim(`src-${id}`);
+                const alt = getVal(`alt-${id}`);
+                const category = getVal(`cat-${id}`);
+                const order = parseInt(getVal(`ord-${id}`)) || 99;
+                const desc = getVal(`desc-${id}`);
 
                 const docRef = doc(db, "gallery", id);
                 await updateDoc(docRef, {
@@ -1409,13 +1484,19 @@
                     </div>
                 `;
 
-                // Non-inline event bindings
-                cardLeads.querySelector(`#toggle-status-${lead.id}`).addEventListener("click", () => {
-                    actionToggleLead(lead.id, lead.status);
-                });
-                cardLeads.querySelector(`#del-lead-${lead.id}`).addEventListener("click", () => {
-                    actionDeleteLead(lead.id);
-                });
+                const toggleBtn = cardLeads.querySelector(`#toggle-status-${lead.id}`);
+                if (toggleBtn) {
+                    toggleBtn.addEventListener("click", () => {
+                        actionToggleLead(lead.id, lead.status);
+                    });
+                }
+                
+                const delBtn = cardLeads.querySelector(`#del-lead-${lead.id}`);
+                if (delBtn) {
+                    delBtn.addEventListener("click", () => {
+                        actionDeleteLead(lead.id);
+                    });
+                }
 
                 container.appendChild(cardLeads);
             });
@@ -1450,7 +1531,7 @@
             }
         }
 
-        // Expose global controller actions to trigger from plain HTML inline attributes
+        // Expose global actions
         window.openAdminControlPanel = openAdminControlPanel;
         window.closeAdminControlPanel = closeAdminControlPanel;
         window.verifyAdminCredentials = verifyAdminCredentials;
@@ -1462,17 +1543,19 @@
         window.closeLightboxModal = closeLightboxModal;
         window.navigateLightboxImage = navigateLightboxImage;
 
-        window.toggleeNavbarDropdown = () => {
-            const panel = document.getElementById("e-nav-panel");
+        window.toggleMobileNavbarDropdown = () => {
+            const panel = document.getElementById("mobile-nav-panel");
             const icon = document.getElementById("menu-btn-icon");
-            const open = panel.classList.contains("hidden");
+            const open = panel ? panel.classList.contains("hidden") : false;
 
-            if (open) {
-                panel.classList.remove("hidden");
-                icon.setAttribute("data-lucide", "x");
-            } else {
-                panel.classList.add("hidden");
-                icon.setAttribute("data-lucide", "menu");
+            if (panel && icon) {
+                if (open) {
+                    panel.classList.remove("hidden");
+                    icon.setAttribute("data-lucide", "x");
+                } else {
+                    panel.classList.add("hidden");
+                    icon.setAttribute("data-lucide", "menu");
+                }
             }
             lucide.createIcons();
         };
