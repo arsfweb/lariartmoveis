@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="LariArt Móveis sob Encomenda - Projetos exclusivos de móveis comerciais e decorações para negócios de sucesso.">
     <meta name="theme-color" content="#0B0B0B">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-e-web-app-capable" content="yes">
+    <meta name="apple-e-web-app-status-bar-style" content="black-translucent">
     
     <title>LariArt | Móveis sob Encomenda e Decorações Comerciais</title>
     
@@ -227,7 +227,7 @@
         <div class="relative z-10 max-w-5xl mx-auto px-6 text-center space-y-8">
             <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 text-primary px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
                 <i data-lucide="sparkles" class="w-4 h-4 text-primary animate-pulse"></i>
-                Mobiliário Comercial 100% sob Encomenda (Não Planejado)
+                Transforme seu espaço de trabalho com móveis que unem designe e funcionalidade
             </div>
 
             <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
@@ -895,7 +895,7 @@
             if (siteConfig.promoActive) {
                 document.getElementById("promocoes").classList.remove("hidden");
                 document.getElementById("nav-promo-tab").classList.remove("hidden");
-                document.getElementById("mobile-promo-tab").classList.remove("hidden");
+                document.getElementById("e-promo-tab").classList.remove("hidden");
                 
                 document.getElementById("promo-badge").innerHTML = `<i data-lucide="gift" class="w-4 h-4"></i> ${siteConfig.promoTag}`;
                 document.getElementById("promo-title").innerText = siteConfig.promoTitle;
@@ -909,7 +909,7 @@
             } else {
                 document.getElementById("promocoes").classList.add("hidden");
                 document.getElementById("nav-promo-tab").classList.add("hidden");
-                document.getElementById("mobile-promo-tab").classList.add("hidden");
+                document.getElementById("e-promo-tab").classList.add("hidden");
             }
 
             // Fill admin panel inputs with loaded database configs
@@ -1462,8 +1462,8 @@
         window.closeLightboxModal = closeLightboxModal;
         window.navigateLightboxImage = navigateLightboxImage;
 
-        window.toggleMobileNavbarDropdown = () => {
-            const panel = document.getElementById("mobile-nav-panel");
+        window.toggleeNavbarDropdown = () => {
+            const panel = document.getElementById("e-nav-panel");
             const icon = document.getElementById("menu-btn-icon");
             const open = panel.classList.contains("hidden");
 
